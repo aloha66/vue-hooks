@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   reactive,
   ref,
@@ -329,7 +330,7 @@ function useAsync(service: any, options: any) {
       run(...(defaultParams as any));
     }
   };
-  const mutate = (payload) => curFetch.value.mutate(payload);
+  const mutate = (payload: any) => curFetch.value.mutate(payload);
 
   onMounted(() => {
     if (!manual) {

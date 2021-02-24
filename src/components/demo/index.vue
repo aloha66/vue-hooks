@@ -71,7 +71,7 @@
       </p> -->
 
       <div>{{ loading }}</div>
-      <div style="margin: 10px" v-for="(item, i) in data?.data" :key="i">
+      <div style="margin: 10px" v-for="item in data?.data" :key="item.id">
         {{ item.title }}
 
         <div>
@@ -95,7 +95,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, watchEffect } from 'vue';
+import { defineComponent, ref, watch } from 'vue';
 import { useRequest } from '../../../packages/use-request/src';
 
 export default defineComponent({
@@ -123,10 +123,10 @@ export default defineComponent({
     }
 
     // const { loading, run, data, fetches, params } = useRequest(
-    const detail = useRequest((id) => getUserId(id), {
+    const detail = useRequest((id: string) => getUserId(id), {
       loadingDelay: 100,
       manual: true,
-      fetchKey: (id) => id,
+      fetchKey: (id: string) => id,
     });
 
     const pollreq = useRequest(
@@ -147,7 +147,7 @@ export default defineComponent({
       run();
     };
 
-    const click = (id: string) => {
+    const click = (id: any) => {
       detail.run(id);
     };
 
@@ -161,7 +161,7 @@ export default defineComponent({
 
     // 依赖请求开始(和react的渲染不一样,vue的setup只会执行一次,不需要ready属性)
     const { data: firstRequestData, params: firstPa, ...firstRequest } = useRequest(
-      (id) => firstParam(id),
+      (id: string) => firstParam(id),
       {
         manual: true,
       },
@@ -175,7 +175,7 @@ export default defineComponent({
       };
     }
 
-    const secondRequest = useRequest((params) => secondParam(params), { manual: true });
+    const secondRequest = useRequest((params: string) => secondParam(params), { manual: true });
     // 这样写才能做到依赖请求
     // 改成watchEffect好像有点问题 第二个接口会请求多一次
     watch(firstRequestData, () => {
@@ -279,6 +279,7 @@ export default defineComponent({
       swrRequestFetch: swrRequest.fetches,
       swrRequest,
       mutessss,
+      reRequest,
       screenRequestScore: screenRequest.data,
       screenRequestLoading: screenRequest.loading,
       swrRequestData: swrRequest.data,

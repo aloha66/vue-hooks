@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vuedx-typecheck . && vite build",
     "serve": "vite preview",
     "watch": "vuedx-typecheck . --watch"
   },
