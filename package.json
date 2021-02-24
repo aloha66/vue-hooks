@@ -1,0 +1,31 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "watch": "vuedx-typecheck . --watch"
+  },
+  "dependencies": {
+    "vue": "^3.0.5",
+    "vue-demi": "^0.6.0",
+    "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1"
+  },
+  "devDependencies": {
+    "@types/lodash.debounce": "^4.0.6",
+    "@types/lodash.throttle": "^4.1.6",
+    "@vitejs/plugin-vue": "^1.1.4",
+    "@vue/compiler-sfc": "^3.0.5",
+    "@vuedx/typecheck": "^0.6.0",
+    "@vuedx/typescript-plugin-vue": "^0.6.0",
+    "axios": "^0.21.1",
+    "lerna": "^3.22.1",
+    "typescript": "^4.1.3",
+    "vite": "^2.0.0"
+  }
+}
