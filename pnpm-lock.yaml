@@ -1,4 +1,6 @@
 dependencies:
+  '@docsearch/css': 1.0.0-alpha.28
+  '@docsearch/js': 1.0.0-alpha.28
   lodash.debounce: 4.0.8
   lodash.throttle: 4.1.1
   vue: 3.0.6
@@ -7,8 +9,6 @@ devDependencies:
   '@types/jest': 26.0.20
   '@types/lodash.debounce': 4.0.6
   '@types/lodash.throttle': 4.1.6
-  '@vitejs/plugin-vue': 1.1.4_@vue+compiler-sfc@3.0.6
-  '@vue/compiler-sfc': 3.0.6_vue@3.0.6
   '@vuedx/typecheck': 0.6.3
   '@vuedx/typescript-plugin-vue': 0.6.3
   axios: 0.21.1
@@ -16,24 +16,22 @@ devDependencies:
   lerna: 3.22.1
   ts-jest: 26.5.2_jest@26.6.3+typescript@4.2.2
   typescript: 4.2.2
-  vite: 2.0.3
+  vite-plugin-components: 0.7.5
+  vite-plugin-windicss: 0.6.6
   vitepress: 0.12.2
 lockfileVersion: 5.2
 packages:
   /@algolia/cache-browser-local-storage/4.8.5:
     dependencies:
       '@algolia/cache-common': 4.8.5
-    dev: true
     resolution:
       integrity: sha512-9rs/Yi82ilgifweJamOy4DlJ4xPGsCN/zg+RKy4vjytNhOrkEHLRQC8vPZ3OhD8KVlw9lRQIZTlgjgFl8iMeeA==
   /@algolia/cache-common/4.8.5:
-    dev: true
     resolution:
       integrity: sha512-4SvRWnagKtwBFAy8Rsfmv0/Uk53fZL+6dy2idwdx6SjMGKSs0y1Qv+thb4h/k/H5MONisAoT9C2rgZ/mqwh5yw==
   /@algolia/cache-in-memory/4.8.5:
     dependencies:
       '@algolia/cache-common': 4.8.5
-    dev: true
     resolution:
       integrity: sha512-XBBfqs28FbjwLboY3sxvuzBgYsuXdFsj2mUvkgxfb0GVEzwW4I0NM7KzSPwT+iht55WS1PgIOnynjmhPsrubCw==
   /@algolia/client-account/4.8.5:
@@ -41,7 +39,6 @@ packages:
       '@algolia/client-common': 4.8.5
       '@algolia/client-search': 4.8.5
       '@algolia/transporter': 4.8.5
-    dev: true
     resolution:
       integrity: sha512-DjXMpeCdY4J4IDBfowiG6Xl9ec/FhG1NpPQM0Uv4xXsc/TeeZ1JgbgNDhWe9jW0jBEALy+a/RmPrZ0vsxcadsg==
   /@algolia/client-analytics/4.8.5:
@@ -50,14 +47,12 @@ packages:
       '@algolia/client-search': 4.8.5
       '@algolia/requester-common': 4.8.5
       '@algolia/transporter': 4.8.5
-    dev: true
     resolution:
       integrity: sha512-PQEY+chbHmZnRJdaWsvUYzDpEPr60az0EPUexdouvXGZId15/SnDaXjnf89F7tYmCzkHdUtG4bSvPzAupQ4AFA==
   /@algolia/client-common/4.8.5:
     dependencies:
       '@algolia/requester-common': 4.8.5
       '@algolia/transporter': 4.8.5
-    dev: true
     resolution:
       integrity: sha512-Dn8vog2VrGsJeOcBMcSAEIjBtPyogzUBGlh1DtVd0m8GN6q+cImCESl6DY846M2PTYWsLBKBksq37eUfSe9FxQ==
   /@algolia/client-recommendation/4.8.5:
@@ -65,7 +60,6 @@ packages:
       '@algolia/client-common': 4.8.5
       '@algolia/requester-common': 4.8.5
       '@algolia/transporter': 4.8.5
-    dev: true
     resolution:
       integrity: sha512-ffawCC1C25rCa8/JU2niRZgwr8aV9b2qsLVMo73GXFzi2lceXPAe9K68mt/BGHU+w7PFUwVHsV2VmB+G/HQRVw==
   /@algolia/client-search/4.8.5:
@@ -73,33 +67,27 @@ packages:
       '@algolia/client-common': 4.8.5
       '@algolia/requester-common': 4.8.5
       '@algolia/transporter': 4.8.5
-    dev: true
     resolution:
       integrity: sha512-Ru2MljGZWrSQ0CVsDla11oGEPL/RinmVkLJfBtQ+/pk1868VfpAQFGKtOS/b8/xLrMA0Vm4EfC3Mgclk/p3KJA==
   /@algolia/logger-common/4.8.5:
-    dev: true
     resolution:
       integrity: sha512-PS6NS6bpED0rAxgCPGhjZJg9why0PnoVEE7ZoCbPq6lsAOc6FPlQLri4OiLyU7wx8RWDoVtOadyzulqAAsfPSQ==
   /@algolia/logger-console/4.8.5:
     dependencies:
       '@algolia/logger-common': 4.8.5
-    dev: true
     resolution:
       integrity: sha512-3+4gLSbwzuGmrb5go3IZNcFIYVMSbB4c8UMtWEJ/gDBtgGZIvT6f/KlvVSOHIhthSxaM3Y13V6Qile/SpGqc6A==
   /@algolia/requester-browser-xhr/4.8.5:
     dependencies:
       '@algolia/requester-common': 4.8.5
-    dev: true
     resolution:
       integrity: sha512-M/Gf2vv/fU4+CqDW+wok7HPpEcLym3NtDzU9zaPzGYI/9X7o36581oyfnzt2pNfsXSQVj5a2pZVUWC3Z4SO27w==
   /@algolia/requester-common/4.8.5:
-    dev: true
     resolution:
       integrity: sha512-OIhsdwIrJVAlVlP7cwlt+RoR5AmxAoTGrFokOY9imVmgqXUUljdKO/DjhRL8vwYGFEidZ9efIjAIQ2B3XOhT9A==
   /@algolia/requester-node-http/4.8.5:
     dependencies:
       '@algolia/requester-common': 4.8.5
-    dev: true
     resolution:
       integrity: sha512-viHAjfo53A3VSE7Bb/nzgpSMZ3prPp2qti7Wg8w7qxhntppKp3Fln6t4Vp+BoPOqruLsj139xXhheAKeRcYa0w==
   /@algolia/transporter/4.8.5:
@@ -107,7 +95,6 @@ packages:
       '@algolia/cache-common': 4.8.5
       '@algolia/logger-common': 4.8.5
       '@algolia/requester-common': 4.8.5
-    dev: true
     resolution:
       integrity: sha512-Rb3cMlh/GoJK0+g+49GNA3IvR/EXsDEBwpyM+FOotSwxgiGt1wGBHM0K2v0GHwIEcuww02pl6KMDVlilA+qh0g==
   /@arr/every/1.0.1:
@@ -450,14 +437,12 @@ packages:
     resolution:
       integrity: sha512-v9kIhKwjeZThiWrLmj0y17CWoyddASLj9O2yvbZkbvw/N3rWOYy9zkV66ursAoVr0mV15bL8g0c4QZUE6cdDoQ==
   /@docsearch/css/1.0.0-alpha.28:
-    dev: true
     resolution:
       integrity: sha512-1AhRzVdAkrWwhaxTX6/R7SnFHz8yLz1W8I/AldlTrfbNvZs9INk1FZiEFTJdgHaP68nhgQNWSGlQiDiI3y2RYg==
   /@docsearch/js/1.0.0-alpha.28:
     dependencies:
       '@docsearch/react': 1.0.0-alpha.28
       preact: 10.5.12
-    dev: true
     resolution:
       integrity: sha512-2g7aPhBy7FoEyeZW2G3LYHWVa8CFvqyozEz8PXt3hyywdFcmEIqmoCRwn8kboVftrOKCjtPcuLCewsaBoB3uiw==
   /@docsearch/react/1.0.0-alpha.28:
@@ -466,7 +451,6 @@ packages:
       '@francoischalifour/autocomplete-core': 1.0.0-alpha.28
       '@francoischalifour/autocomplete-preset-algolia': 1.0.0-alpha.28
       algoliasearch: 4.8.5
-    dev: true
     peerDependencies:
       react: ^16.8.0
       react-dom: ^16.8.0
@@ -543,11 +527,9 @@ packages:
     resolution:
       integrity: sha512-EI552lf0aG2nOV8NnZpTxNo2PcXKPmDbF9K8eCBFQdIZwHNGN/mi815fxtmUMa2wTa1yndotICIDt/V0vpEx2w==
   /@francoischalifour/autocomplete-core/1.0.0-alpha.28:
-    dev: true
     resolution:
       integrity: sha512-rL9x+72btViw+9icfBKUJjZj87FgjFrD2esuTUqtj4RAX3s4AuVZiN8XEsfjQBSc6qJk31cxlvqZHC/BIyYXgg==
   /@francoischalifour/autocomplete-preset-algolia/1.0.0-alpha.28:
-    dev: true
     resolution:
       integrity: sha512-bprfNmYt1opFUFEtD2XfY/kEsm13bzHQgU80uMjhuK0DJ914IjolT1GytpkdM6tJ4MBvyiJPP+bTtWO+BZ7c7w==
   /@intlify/core-base/9.0.0-beta.16:
@@ -801,6 +783,19 @@ packages:
       node: '>= 10.14.2'
     resolution:
       integrity: sha512-fC6QCp7Sc5sX6g8Tvbmj4XUTbyrik0akgRy03yjXbQaBWWNWGE7SGtJk98m0N8nzegD/7SggrUlivxo5ax4KWQ==
+  /@knightly/fast-glob/3.2.5-knightly-master.202101180131:
+    dependencies:
+      '@nodelib/fs.stat': 2.0.4
+      '@nodelib/fs.walk': 1.2.6
+      glob-parent: 5.1.1
+      merge2: 1.4.1
+      micromatch: 4.0.2
+      picomatch: 2.2.2
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-zf9RptV5EYbjpfrOB3EYA2M2QhTuM0fnU0OxmLrcOAKLmBzJ0p/2910I1sS2U5XjXIzV4N2/It95ztLedz4/+A==
   /@lerna/add/3.21.0:
     dependencies:
       '@evocateur/pacote': 9.6.5
@@ -2092,6 +2087,16 @@ packages:
     dev: true
     resolution:
       integrity: sha512-FN5h4GsIcYAIfFbal0+1ryddDgpxMx/gxGE5QYinbwj5PwILZzyAUt//drQfppIHzCL+TJuZSml7fAod5tYvQA==
+  /@windicss/plugin-utils/0.6.6:
+    dependencies:
+      esbuild: 0.8.54
+      esbuild-register: 2.0.0_esbuild@0.8.54
+      fast-glob: 3.2.5
+      micromatch: 4.0.2
+      windicss: 2.2.6
+    dev: true
+    resolution:
+      integrity: sha512-9W6sy8oSDqYDeTtv03S5AMm5qc8w70f2obwFiVeI0JuhFM1lra3+bMin4HEbRJqJQCjy6xDiSkF6vxOiLSg9kQ==
   /@zkochan/cmd-shim/3.1.0:
     dependencies:
       is-windows: 1.0.2
@@ -2204,7 +2209,6 @@ packages:
       '@algolia/requester-common': 4.8.5
       '@algolia/requester-node-http': 4.8.5
       '@algolia/transporter': 4.8.5
-    dev: true
     resolution:
       integrity: sha512-GjKjpeevpePEJYinGokASNtIkl1t5EseNMlqDNAc+sXE8+iyyeqTyiJsN7bwlRG2BIremuslE/NlwdEfUuBLJw==
   /ansi-escapes/3.2.0:
@@ -2534,6 +2538,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==
+  /binary-extensions/2.2.0:
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==
   /bl/4.1.0:
     dependencies:
       buffer: 5.7.1
@@ -2819,6 +2829,22 @@ packages:
     dev: true
     resolution:
       integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
+  /chokidar/3.5.1:
+    dependencies:
+      anymatch: 3.1.1
+      braces: 3.0.2
+      glob-parent: 5.1.1
+      is-binary-path: 2.1.0
+      is-glob: 4.0.1
+      normalize-path: 3.0.0
+      readdirp: 3.5.0
+    dev: true
+    engines:
+      node: '>= 8.10.0'
+    optionalDependencies:
+      fsevents: 2.3.2
+    resolution:
+      integrity: sha512-9+s+Od+W0VJJzawDma/gvBNQqkTiqYTWLuZoyAsivsI4AaWTCzHG06/TMjsf1cYe9Cb97UCEhjz7HvnPk2p/tw==
   /chownr/1.1.4:
     dev: true
     resolution:
@@ -3345,6 +3371,19 @@ packages:
         optional: true
     resolution:
       integrity: sha512-doEwdvm4PCeK4K3RQN2ZC2BYUBaxwLARCqZmMjtF8a51J2Rb0xpVloFRnCODwqjpwnAoao4pelN8l3RJdv3gRQ==
+  /debug/4.3.2:
+    dependencies:
+      ms: 2.1.2
+    dev: true
+    engines:
+      node: '>=6.0'
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    resolution:
+      integrity: sha512-mOp8wKcvj7XxC78zLgw/ZA+6TSgkoE2C/ienthhRD298T7UNwAg9diBpLRxC0mOezLl4B0xV7M0cCO6P/O0Xhw==
   /debuglog/1.0.1:
     dev: true
     resolution:
@@ -3639,12 +3678,30 @@ packages:
     dev: true
     resolution:
       integrity: sha1-UQnWLz5W6pZ8S2NQWu8IKRyKUgM=
+  /esbuild-register/2.0.0_esbuild@0.8.54:
+    dependencies:
+      esbuild: 0.8.54
+      joycon: 2.2.5
+      pirates: 4.0.1
+      source-map-support: 0.5.19
+      strip-json-comments: 3.1.1
+    dev: true
+    peerDependencies:
+      esbuild: '>=0.8.31'
+    resolution:
+      integrity: sha512-98i1+7OnCURCbKaWw5wnY05e4v7uknFEER7LtVxi/lCs8U+sl6/LnITvfeoDLrsqxlA3O6BjxK8QqsirfYULfA==
   /esbuild/0.8.52:
     dev: true
     hasBin: true
     requiresBuild: true
     resolution:
       integrity: sha512-b5KzFweLLXoXQwdC/e2+Z80c8uo2M5MgP7yQEEebkFw6In4T9CvYcNoM2ElvJt8ByO04zAZUV0fZkXmXoi2s9A==
+  /esbuild/0.8.54:
+    dev: true
+    hasBin: true
+    requiresBuild: true
+    resolution:
+      integrity: sha512-DJH38OiTgXJxFb/EhHrCrY8eGmtdkTtWymHpN9IYN9AF+4jykT0dQArr7wzFejpVbaB0TMIq2+vfNRWr3LXpvw==
   /escalade/3.1.1:
     dev: true
     engines:
@@ -4679,6 +4736,14 @@ packages:
     dev: true
     resolution:
       integrity: sha1-d8mYQFJ6qOyxqLppe4BkWnqSap0=
+  /is-binary-path/2.1.0:
+    dependencies:
+      binary-extensions: 2.2.0
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==
   /is-buffer/1.1.6:
     dev: true
     resolution:
@@ -5442,6 +5507,12 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-lGS5PXGAzR4RF7V5+XObhqz2KZIDUA1yD0DG6pBVmy10eh0ZIXQImRuzocsI/N2XZ1GrLFwTS27In2i2jlpq1Q==
+  /joycon/2.2.5:
+    dev: true
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-YqvUxoOcVPnCp0VU1/56f+iKSdvIRJYPznH22BdXV3xMk75SFXhWeJkZ8C9XxUWt1b5x2X1SxuFygW1U0FmkEQ==
   /js-tokens/4.0.0:
     dev: true
     resolution:
@@ -7055,7 +7126,6 @@ packages:
     resolution:
       integrity: sha512-xpB8qYxgPuly166AGlpRjUdEYtmOWx2iCwGmrv4vqZL9YPVviDVPZPRXxnXr6xPZOdxQ9lp3ZBFCRgWJ7LE3Sg==
   /preact/10.5.12:
-    dev: true
     resolution:
       integrity: sha512-r6siDkuD36oszwlCkcqDJCAKBQxGoeEGytw2DGMD5A/GGdu5Tymw+N2OBXwvOLxg6d1FeY8MgMV3cc5aVQo4Cg==
   /prelude-ls/1.1.2:
@@ -7336,6 +7406,14 @@ packages:
     dev: true
     resolution:
       integrity: sha512-asaikDeqAQg7JifRsZn1NJZXo9E+VwlyCfbkZhwyISinqk5zNS6266HS5kah6P0SaQKGF6SkNnZVHUzHFYxYDw==
+  /readdirp/3.5.0:
+    dependencies:
+      picomatch: 2.2.2
+    dev: true
+    engines:
+      node: '>=8.10.0'
+    resolution:
+      integrity: sha512-cMhu7c/8rdhkHXWsY+osBhfSy0JikwpHK/5+imo+LpeasTF8ouErHrlYkwT0++njiyuDvc7OFY5T3ukvZ8qmFQ==
   /redent/1.0.0:
     dependencies:
       indent-string: 2.1.0
@@ -8167,6 +8245,12 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-laJTa3Jb+VQpaC6DseHhF7dXVqHTfJPCRDaEbid/drOhgitgYku/letMUqOXFoWV0zIIUbjpdH2t+tYj4bQMRQ==
+  /strip-json-comments/3.1.1:
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
   /strong-log-transformer/2.1.0:
     dependencies:
       duplexer: 0.1.2
@@ -8695,6 +8779,26 @@ packages:
       '0': node >=0.6.0
     resolution:
       integrity: sha1-OhBcoXBTr1XW4nDB+CiGguGNpAA=
+  /vite-plugin-components/0.7.5:
+    dependencies:
+      chokidar: 3.5.1
+      debug: 4.3.2
+      fast-glob: /@knightly/fast-glob/3.2.5-knightly-master.202101180131
+      minimatch: 3.0.4
+    dev: true
+    peerDependencies:
+      vite: ^2.0.0-beta.69
+    resolution:
+      integrity: sha512-Sly+l1GMRqLeeOFXc9uT1wJUSZQ0LP/65h/c4NK9CWdw2HhHBuB/yyp3ocPLfaq2k+KUeIX2J/Vco/G4hGAy4w==
+  /vite-plugin-windicss/0.6.6:
+    dependencies:
+      '@windicss/plugin-utils': 0.6.6
+      windicss: 2.2.6
+    dev: true
+    peerDependencies:
+      vite: ^2.0.1
+    resolution:
+      integrity: sha512-V2UlnHKxCmH1BwrI96YMaBocpIoHzBRYsfv1GOi0jMs7gyakAz3QcnjGwdB2ZtSsE+wPlv5MhSFbL1CFVsvW/A==
   /vite/2.0.3:
     dependencies:
       esbuild: 0.8.52
@@ -8869,6 +8973,13 @@ packages:
     dev: true
     resolution:
       integrity: sha512-QGkOQc8XL6Bt5PwnsExKBPuMKBxnGxWWW3fU55Xt4feHozMUhdUMaBCk290qpm/wG5u/RSKzwdAC4i51YigihA==
+  /windicss/2.2.6:
+    dev: true
+    engines:
+      node: '>= 12'
+    hasBin: true
+    resolution:
+      integrity: sha512-RK502Xwsw0ptjVueJum0TEr286YJgtqK6kXpa60R6a1z2gGkVpEcaIfr6okQ5EYUk8WMRLrXoK6B2E6dSRg/sw==
   /windows-release/3.3.3:
     dependencies:
       execa: 1.0.0
@@ -9090,11 +9201,11 @@ packages:
     resolution:
       integrity: sha512-D1mvvtDG0L5ft/jGWkLpG1+m0eQxOfaBvTNELraWj22wSVUMWxZUvYgJYcKh6jGGIkJFhH4IZPQhR4TKpc8mBw==
 specifiers:
+  '@docsearch/css': ^1.0.0-alpha.28
+  '@docsearch/js': ^1.0.0-alpha.28
   '@types/jest': ^26.0.20
   '@types/lodash.debounce': ^4.0.6
   '@types/lodash.throttle': ^4.1.6
-  '@vitejs/plugin-vue': ^1.1.4
-  '@vue/compiler-sfc': ^3.0.5
   '@vuedx/typecheck': ^0.6.0
   '@vuedx/typescript-plugin-vue': ^0.6.0
   axios: ^0.21.1
@@ -9104,7 +9215,8 @@ specifiers:
   lodash.throttle: ^4.1.1
   ts-jest: ^26.5.2
   typescript: ^4.1.3
-  vite: ^2.0.0
+  vite-plugin-components: ^0.7.5
+  vite-plugin-windicss: ^0.6.6
   vitepress: ^0.12.2
-  vue: ^3.0.5
+  vue: ^3.0.6
   vue-demi: ^0.6.0

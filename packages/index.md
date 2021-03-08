@@ -28,3 +28,11 @@ features:
 
 footer: MIT Licensed | Copyright © 2020-PRESENT Anthony Fu and @VueUse contributors
 ---
+
+{{ $page.frontmatter.actionText }}
+
+<h1><span class="text-2xl ml-4">Hey, I'm Harlan 👋</span></h1>
+
+I'm self-employed, working on my personal and professional growth. Actively trying to build new things with Laravel and Vue. Sharing my journey and learnings along the way.
+
+## Blog

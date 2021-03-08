@@ -12,3 +12,8 @@
 - useToggle
 - 单元测试
 - 丰富 vite
+  - vite-plugin-icons
+  - vite-plugin-components
+  - vite-plugin-pwa
+  - vite-plugin-windicss
+  - vitepress
