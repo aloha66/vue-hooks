@@ -11,32 +11,32 @@
       <NavDropdownLink :item="localeLinks" />
     </div>
 
-    <div v-if="repo" class="item">
+    <!-- <div v-if="repo" class="item">
       <NavLink :item="repo" />
-    </div>
+    </div> -->
   </nav>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useSiteDataByRoute } from 'vitepress'
-import { useLocaleLinks } from '../composables/nav'
-import { useRepo } from '../composables/repo'
-import NavLink from './NavLink.vue'
-import NavDropdownLink from './NavDropdownLink.vue'
+import { computed } from 'vue';
+import { useSiteDataByRoute } from 'vitepress';
+import { useLocaleLinks } from '../composables/nav';
+// import { useRepo } from '../composables/repo';
+import NavLink from './NavLink.vue';
+import NavDropdownLink from './NavDropdownLink.vue';
 
-const site = useSiteDataByRoute()
-const localeLinks = useLocaleLinks()
-const repo = useRepo()
+const site = useSiteDataByRoute();
+const localeLinks = useLocaleLinks();
+// const repo = useRepo();
 
-const show = computed(() => links.value || repo.value)
+const show = computed(() => links.value || repo.value);
 
-const links = computed(() => site.value.themeConfig.nav)
+const links = computed(() => site.value.themeConfig.nav);
 </script>
 
 <style scoped>
 .nav-links {
-  padding: .75rem 0;
+  padding: 0.75rem 0;
   border-bottom: 1px solid var(--c-divider);
 }
 

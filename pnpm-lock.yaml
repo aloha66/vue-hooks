@@ -6,6 +6,7 @@ dependencies:
   vue: 3.0.7
   vue-demi: 0.7.1_vue@3.0.7
 devDependencies:
+  '@iconify/json': 1.1.314
   '@types/jest': 26.0.20
   '@types/lodash.debounce': 4.0.6
   '@types/lodash.throttle': 4.1.6
@@ -16,6 +17,8 @@ devDependencies:
   lerna: 3.22.1
   ts-jest: 26.5.3_jest@26.6.3+typescript@4.2.3
   typescript: 4.2.3
+  vite-plugin-components: 0.8.0
+  vite-plugin-icons: 0.3.2_@iconify+json@1.1.314
   vite-plugin-windicss: 0.6.11
   vitepress: 0.12.2
 lockfileVersion: 5.2
@@ -531,6 +534,14 @@ packages:
   /@francoischalifour/autocomplete-preset-algolia/1.0.0-alpha.28:
     resolution:
       integrity: sha512-bprfNmYt1opFUFEtD2XfY/kEsm13bzHQgU80uMjhuK0DJ914IjolT1GytpkdM6tJ4MBvyiJPP+bTtWO+BZ7c7w==
+  /@iconify/json-tools/1.0.10:
+    dev: true
+    resolution:
+      integrity: sha512-LFelJDOLZ6JHlmlAkgrvmcu4hpNPB91KYcr4f60D/exzU1eNOb4/KCVHIydGHIQFaOacIOD+Xy+B7P1z812cZg==
+  /@iconify/json/1.1.314:
+    dev: true
+    resolution:
+      integrity: sha512-KDc2dtNnbUryuUWs4ov1e8xCcEjrU/9r3PLOsElzsRpMjaGe/RfpAvU1NkDlv7Mmriaah+Dj6SVoLeRSUB5q3g==
   /@intlify/core-base/9.0.0:
     dependencies:
       '@intlify/message-compiler': 9.0.0
@@ -782,6 +793,19 @@ packages:
       node: '>= 10.14.2'
     resolution:
       integrity: sha512-fC6QCp7Sc5sX6g8Tvbmj4XUTbyrik0akgRy03yjXbQaBWWNWGE7SGtJk98m0N8nzegD/7SggrUlivxo5ax4KWQ==
+  /@knightly/fast-glob/3.2.5-knightly-master.202101180131:
+    dependencies:
+      '@nodelib/fs.stat': 2.0.4
+      '@nodelib/fs.walk': 1.2.6
+      glob-parent: 5.1.2
+      merge2: 1.4.1
+      micromatch: 4.0.2
+      picomatch: 2.2.2
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-zf9RptV5EYbjpfrOB3EYA2M2QhTuM0fnU0OxmLrcOAKLmBzJ0p/2910I1sS2U5XjXIzV4N2/It95ztLedz4/+A==
   /@lerna/add/3.21.0:
     dependencies:
       '@evocateur/pacote': 9.6.5
@@ -2531,6 +2555,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==
+  /binary-extensions/2.2.0:
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==
   /bl/4.1.0:
     dependencies:
       buffer: 5.7.1
@@ -2816,6 +2846,22 @@ packages:
     dev: true
     resolution:
       integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
+  /chokidar/3.5.1:
+    dependencies:
+      anymatch: 3.1.1
+      braces: 3.0.2
+      glob-parent: 5.1.2
+      is-binary-path: 2.1.0
+      is-glob: 4.0.1
+      normalize-path: 3.0.0
+      readdirp: 3.5.0
+    dev: true
+    engines:
+      node: '>= 8.10.0'
+    optionalDependencies:
+      fsevents: 2.3.2
+    resolution:
+      integrity: sha512-9+s+Od+W0VJJzawDma/gvBNQqkTiqYTWLuZoyAsivsI4AaWTCzHG06/TMjsf1cYe9Cb97UCEhjz7HvnPk2p/tw==
   /chownr/1.1.4:
     dev: true
     resolution:
@@ -3342,6 +3388,19 @@ packages:
         optional: true
     resolution:
       integrity: sha512-doEwdvm4PCeK4K3RQN2ZC2BYUBaxwLARCqZmMjtF8a51J2Rb0xpVloFRnCODwqjpwnAoao4pelN8l3RJdv3gRQ==
+  /debug/4.3.2:
+    dependencies:
+      ms: 2.1.2
+    dev: true
+    engines:
+      node: '>=6.0'
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    resolution:
+      integrity: sha512-mOp8wKcvj7XxC78zLgw/ZA+6TSgkoE2C/ienthhRD298T7UNwAg9diBpLRxC0mOezLl4B0xV7M0cCO6P/O0Xhw==
   /debuglog/1.0.1:
     dev: true
     resolution:
@@ -4689,6 +4748,14 @@ packages:
     dev: true
     resolution:
       integrity: sha512-J0ELF4yHFxHy0cmSxZuheDOz2luOdVvqjwmEcj8H/L1JHeuEDSDbeRP+Dk9kFVk5RTFzbucJ2Kb9F7ixY2QaCg==
+  /is-binary-path/2.1.0:
+    dependencies:
+      binary-extensions: 2.2.0
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==
   /is-boolean-object/1.1.0:
     dependencies:
       call-bind: 1.0.2
@@ -7369,6 +7436,14 @@ packages:
     dev: true
     resolution:
       integrity: sha512-asaikDeqAQg7JifRsZn1NJZXo9E+VwlyCfbkZhwyISinqk5zNS6266HS5kah6P0SaQKGF6SkNnZVHUzHFYxYDw==
+  /readdirp/3.5.0:
+    dependencies:
+      picomatch: 2.2.2
+    dev: true
+    engines:
+      node: '>=8.10.0'
+    resolution:
+      integrity: sha512-cMhu7c/8rdhkHXWsY+osBhfSy0JikwpHK/5+imo+LpeasTF8ouErHrlYkwT0++njiyuDvc7OFY5T3ukvZ8qmFQ==
   /redent/1.0.0:
     dependencies:
       indent-string: 2.1.0
@@ -8731,6 +8806,29 @@ packages:
       '0': node >=0.6.0
     resolution:
       integrity: sha1-OhBcoXBTr1XW4nDB+CiGguGNpAA=
+  /vite-plugin-components/0.8.0:
+    dependencies:
+      chokidar: 3.5.1
+      debug: 4.3.2
+      fast-glob: /@knightly/fast-glob/3.2.5-knightly-master.202101180131
+      minimatch: 3.0.4
+    dev: true
+    peerDependencies:
+      vite: ^2.0.0-beta.69
+    resolution:
+      integrity: sha512-VpYIffUxj1CiBUok41xJJV2dc9tI7MSrHM7oSJKSD0CT5SKwxXh+T+WesEP1Ey42vlofup0Lovwmk648Ms/vuw==
+  /vite-plugin-icons/0.3.2_@iconify+json@1.1.314:
+    dependencies:
+      '@iconify/json': 1.1.314
+      '@iconify/json-tools': 1.0.10
+      vue-template-es2015-compiler: 1.9.1
+    dev: true
+    peerDependencies:
+      '@iconify/json': '*'
+      '@vue/compiler-sfc': ^3.0.2
+      vue-template-compiler: ^2.6.12
+    resolution:
+      integrity: sha512-6HDBO6aqJLaJ8lkT9FChAUtniRRzhDWbhNzJLfT7QdDcQ2kaapReksngNEA1+tNlFd5Auey4VGS2VjI3V1KkvA==
   /vite-plugin-windicss/0.6.11:
     dependencies:
       '@windicss/plugin-utils': 0.6.11
@@ -8815,6 +8913,10 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-cJ3QnpcbIqdpeV3NnNgSDwneCJifvHct+6JNvfYn/49geK/uv5VJicZDvyg20guNhz+DZmUHBHyRQTJ32lSC2g==
+  /vue-template-es2015-compiler/1.9.1:
+    dev: true
+    resolution:
+      integrity: sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
   /vue/3.0.7:
     dependencies:
       '@vue/compiler-dom': 3.0.7
@@ -9158,6 +9260,7 @@ packages:
 specifiers:
   '@docsearch/css': ^1.0.0-alpha.28
   '@docsearch/js': ^1.0.0-alpha.28
+  '@iconify/json': ^1.1.314
   '@types/jest': ^26.0.20
   '@types/lodash.debounce': ^4.0.6
   '@types/lodash.throttle': ^4.1.6
@@ -9170,6 +9273,8 @@ specifiers:
   lodash.throttle: ^4.1.1
   ts-jest: ^26.5.3
   typescript: ^4.2.3
+  vite-plugin-components: ^0.8.0
+  vite-plugin-icons: ^0.3.2
   vite-plugin-windicss: ^0.6.11
   vitepress: ^0.12.2
   vue: ^3.0.7
