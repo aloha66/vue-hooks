@@ -35,4 +35,3 @@ footer: MIT Licensed | Copyright © 2020-PRESENT Anthony Fu and @VueUse contribu
 
 I'm self-employed, working on my personal and professional growth. Actively trying to build new things with Laravel and Vue. Sharing my journey and learnings along the way.
 
-## Blog

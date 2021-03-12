@@ -3,6 +3,7 @@ import { UserConfig } from 'vite';
 import WindiCSS from 'vite-plugin-windicss';
 import Icons, { ViteIconsResolver } from 'vite-plugin-icons';
 import Components from 'vite-plugin-components';
+import { hasDemo } from '../scripts/utils';
 
 const config: UserConfig = {
   plugins: [
@@ -16,6 +17,26 @@ const config: UserConfig = {
       ],
     }),
     Icons(),
+    {
+      name: 'vueuse-md-transform',
+      enforce: 'pre',
+      transform(code, id) {
+        if (!id.endsWith('.md')) return null;
+        // const [pkg, name, i] = id.split('/').slice(-3);
+        const regexp = /packages(.*)(index.md)/;
+        const [, pkgPath, i] = id.match(regexp);
+
+        if (i === 'index.md') {
+          const frontmatterEnds = code.indexOf('---\n\n') + 4;
+          let header = '';
+          if (hasDemo(pkgPath))
+            header =
+              "\n<script setup>\nimport Demo from './demo.vue'\n</script>\n<DemoContainer><Demo/></DemoContainer>\n";
+          if (header) code = code.slice(0, frontmatterEnds) + header + code.slice(frontmatterEnds);
+          return code;
+        }
+      },
+    },
     WindiCSS({
       scan: {
         dirs: ['.'],
