@@ -6,6 +6,9 @@ import Components from 'vite-plugin-components';
 import { hasDemo } from '../scripts/utils';
 
 const config: UserConfig = {
+  optimizeDeps: {
+    exclude: ['vue-demi'],
+  },
   plugins: [
     Components({
       dirs: ['.vitepress/theme/components'],
