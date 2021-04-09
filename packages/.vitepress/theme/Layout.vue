@@ -73,6 +73,10 @@ import type { DefaultTheme } from './config';
 import NavBar from './components/NavBar.vue';
 import SideBar from './components/SideBar.vue';
 import Page from './components/Page.vue';
+import globalProvide from './globalProvide';
+
+// 预留全局配置
+globalProvide();
 
 const Home = defineAsyncComponent(() => import('./components/Home.vue'));
 

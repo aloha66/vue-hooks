@@ -18,9 +18,24 @@
 - ts 类型支持(ps：ts 的类型感觉比较复杂 暂时处理不了，并且把 useAsync.ts 去掉检查 方便打包操作)
 - 单元测试
 
+## 代码演示
+
+### 默认请求
+<Default />
+
+### 轮询
+<Polling/>
+
 ### 参考
 
 - [ahooks](https://github.com/alibaba/hooks/tree/master/packages/use-request)
 - [vue-composable/makeAxios](https://github.com/pikax/vue-composable/blob/master/packages/axios/src/makeAxios.ts)
 - [vueuse/useAxios](https://github.com/vueuse/vueuse/blob/master/packages/integrations/useAxios/index.ts)
 - [ahooks-vue/useRequest](https://github.com/dewfall123/ahooks-vue/blob/master/packages/vhooks/src/useRequest/index.ts)
+
+
+
+<script setup>
+import Default from './demo/Default.vue'
+import Polling from './demo/Polling.vue'
+</script>

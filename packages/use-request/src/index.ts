@@ -57,7 +57,6 @@ export function useRequest(service: any, options: any = {}): any {
           fn.then(reslove).catch(reject);
         });
   }
-
   return useAsync(promiseService, finalOptions);
 }
 
