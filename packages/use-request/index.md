@@ -24,7 +24,7 @@
 <Default />
 
 ### 轮询
-<Polling/>
+<!-- <Polling/> -->
 
 ### 参考
 

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {
   reactive,
   ref,
@@ -12,7 +11,14 @@ import {
 } from 'vue-demi';
 import debounce from 'lodash.debounce';
 import throttle from 'lodash.throttle';
-import {} from './types';
+import {
+  CombineService,
+  BaseOptions,
+  BaseResult,
+  Service,
+  FetchConfig,
+  FetchResult,
+} from './types';
 import { isDocumentVisible } from './utils';
 import subscribeVisible from './utils/windowVisible';
 import subscribeFocus from './utils/windowFocus';
@@ -21,9 +27,9 @@ import limit from './utils/limit';
 
 const DEFAULT_KEY = 'VUE_HOOKS_REQUEST_DEFAULT_KEY';
 
-function useFetch(
-  service: any,
-  config: any,
+function useFetch<R, P extends any[]>(
+  service: Service<R, P>,
+  config: FetchConfig<R, P>,
   initState?: { data?: any; error?: any; params?: any; loading?: any },
 ) {
   // 请求时序
@@ -236,9 +242,12 @@ function useFetch(
   };
 }
 
-function useAsync(service: any, options: any) {
+function useAsync<R, P extends any[]>(
+  service: Service<R, P>,
+  options?: BaseOptions<R, P>,
+): BaseResult<R, P>;
+function useAsync(service: any, options: any): any {
   const _options = options;
-
   const {
     refreshDeps = [],
     fetchKey,

@@ -1,7 +1,12 @@
 import { inject } from 'vue-demi';
 import useAsync from './useAsync';
+import { CombineService, BaseOptions, BaseResult } from './types';
 
-export function useRequest(service: any, options: any = {}): any {
+function useRequest<R = any, P extends any[] = any>(
+  service: CombineService<R, P>,
+  options?: BaseOptions<R, P>,
+): BaseResult<R, P>;
+function useRequest(service: any, options: any = {}): any {
   // 拿到全局配置的内容
   const contextConfig = inject('UseRequestConfigContext', {});
   const finalOptions = { ...contextConfig, ...options };

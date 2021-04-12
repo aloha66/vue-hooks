@@ -6,6 +6,8 @@ import Components from 'vite-plugin-components';
 import { hasDemo } from '../scripts/utils';
 
 const config: UserConfig = {
+  // 如果不排除vue-demi，会导致vitepress环境下出现问题
+  //https://github.com/vueuse/vue-demi/issues/55
   optimizeDeps: {
     exclude: ['vue-demi'],
   },
