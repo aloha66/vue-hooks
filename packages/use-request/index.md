@@ -26,6 +26,9 @@
 ### 轮询
 <!-- <Polling/> -->
 
+### 节流
+<Throttle />
+
 ### 参考
 
 - [ahooks](https://github.com/alibaba/hooks/tree/master/packages/use-request)
@@ -38,4 +41,5 @@
 <script setup>
 import Default from './demo/Default.vue'
 import Polling from './demo/Polling.vue'
+import Throttle from './demo/Throttle.vue'
 </script>
