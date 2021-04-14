@@ -1,4 +1,3 @@
-import { Ref } from 'vue-demi';
 import { CachedKeyType } from './utils/cache';
 export type noop = (...args: any[]) => void;
 // Service解释

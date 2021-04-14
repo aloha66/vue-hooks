@@ -1,7 +1,6 @@
 import {
   reactive,
   ref,
-  Ref,
   toRefs,
   onMounted,
   watchEffect,
@@ -11,14 +10,7 @@ import {
 } from 'vue-demi';
 import debounce from 'lodash.debounce';
 import throttle from 'lodash.throttle';
-import {
-  CombineService,
-  BaseOptions,
-  BaseResult,
-  Service,
-  FetchConfig,
-  FetchResult,
-} from './types';
+import { BaseOptions, BaseResult, Service, FetchConfig } from './types';
 import { isDocumentVisible } from './utils';
 import subscribeVisible from './utils/windowVisible';
 import subscribeFocus from './utils/windowFocus';
@@ -215,12 +207,14 @@ function useFetch<R, P extends any[]>(
   };
 
   if (config.pollingInterval) {
+    // @ts-ignore
     unsubscribe.push(subscribeVisible(rePolling));
   }
 
   // 限制请求
   const limitRefresh = limit(refresh, config.focusTimespan);
   if (config.refreshOnWindowFocus) {
+    // @ts-ignore
     unsubscribe.push(subscribeFocus(limitRefresh));
   }
 
@@ -228,6 +222,7 @@ function useFetch<R, P extends any[]>(
     unmountedFlag = true;
     cancel();
     unsubscribe.forEach((s) => {
+      // @ts-ignore
       s();
     });
   };
@@ -331,14 +326,18 @@ function useAsync(service: any, options: any): any {
     curFetch.value = currentFetch;
     return currentFetch.run(...args);
   };
+  // @ts-ignore
   const cancel = () => curFetch.value.cancel();
   const refresh = () => {
+    // @ts-ignore
     if (curFetch.value.refresh) {
+      // @ts-ignore
       curFetch.value.refresh();
     } else {
       run(...(defaultParams as any));
     }
   };
+  // @ts-ignore
   const mutate = (payload: any) => curFetch.value.mutate(payload);
 
   onMounted(() => {
@@ -356,6 +355,7 @@ function useAsync(service: any, options: any): any {
         if (!(staleTime === -1 || new Date().getTime() - cacheStartTime <= staleTime)) {
           /* 重新执行所有的 cache */
           Object.values(fetches).forEach((f) => {
+            // @ts-ignore
             f.refresh();
           });
         }
@@ -368,6 +368,7 @@ function useAsync(service: any, options: any): any {
 
   onUnmounted(() => {
     Object.values(fetches).forEach((f) => {
+      // @ts-ignore
       f.unmount();
     });
   });
@@ -391,6 +392,7 @@ function useAsync(service: any, options: any): any {
     if (!manual && refreshDeps.length) {
       /* 全部重新执行 */
       Object.values(fetches).forEach((f) => {
+        // @ts-ignore
         f.refresh();
       });
     }
@@ -416,9 +418,13 @@ function useAsync(service: any, options: any): any {
   // curRequest的数据是reactive，可直接使用
 
   return {
+    // @ts-ignore
     data: computed(() => curFetch.value.data),
+    // @ts-ignore
     loading: computed(() => curFetch.value.loading),
+    // @ts-ignore
     params: computed(() => curFetch.value.params),
+    // @ts-ignore
     error: computed(() => curFetch.value.error),
     run,
     cancel,
