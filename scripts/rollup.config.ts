@@ -23,20 +23,22 @@ const iifeGlobals = {
 const configs = [];
 
 for (const { globals, name, external } of activePackages) {
-  const pathName = name === 'async' ? 'use-request/src' : 'hooks/' + name;
+  const inputPathName = name === 'async' ? 'use-request/src' : 'hooks/' + name;
+  const outputPathName = name === 'async' ? 'use-request' : 'hooks/' + name;
+
   configs.push({
-    input: `packages/${pathName}/index.ts`,
+    input: `packages/${inputPathName}/index.ts`,
     output: [
       {
-        file: `packages/${pathName}/dist/index.cjs.js`,
+        file: `packages/${outputPathName}/dist/index.cjs.js`,
         format: 'cjs',
       },
       {
-        file: `packages/${pathName}/dist/index.esm.js`,
+        file: `packages/${outputPathName}/dist/index.esm.js`,
         format: 'es',
       },
       {
-        file: `packages/${pathName}/dist/index.iife.js`,
+        file: `packages/${outputPathName}/dist/index.iife.js`,
         format: 'iife',
         name: iifeName,
         extend: true,
@@ -44,7 +46,7 @@ for (const { globals, name, external } of activePackages) {
         plugins: [injectVueDemi],
       },
       {
-        file: `packages/${pathName}/dist/index.iife.min.js`,
+        file: `packages/${outputPathName}/dist/index.iife.min.js`,
         format: 'iife',
         name: iifeName,
         extend: true,
@@ -72,9 +74,9 @@ for (const { globals, name, external } of activePackages) {
   });
 
   configs.push({
-    input: `packages/${pathName}/index.ts`,
+    input: `packages/${inputPathName}/index.ts`,
     output: {
-      file: `packages/${pathName}/dist/index.d.ts`,
+      file: `packages/${outputPathName}/dist/index.d.ts`,
       format: 'es',
     },
     plugins: [dts()],

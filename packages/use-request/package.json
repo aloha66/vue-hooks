@@ -1,10 +1,36 @@
 {
   "name": "@vue-hooks/use-request",
   "version": "0.1.0",
-  "description": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "./dist/index.cjs.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.esm.js",
+  "unpkg": "./dist/index.iife.min.js",
+  "jsdelivr": "./dist/index.iife.min.js",
+  "description": "use-request",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aloha66/vue-hooks.git"
   },
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "vue",
+    "vue-hook",
+    "request",
+    "utils"
+  ],
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1"
+  },
+  "author": "aloha66 <https://github.com/aloha66>",
+  "license": "ISC",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js"
+    },
+    "./": "./"
+  }
 }
