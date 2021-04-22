@@ -1,5 +1,5 @@
 {
-  "name": "@vue-hooks/use-request",
+  "name": "@aloha66/use-requeste",
   "version": "0.1.0",
   "main": "./dist/index.cjs.js",
   "types": "./dist/index.d.ts",
@@ -20,9 +20,12 @@
   "files": [
     "dist"
   ],
-  "peerDependencies": {
+  "dependencies": {
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1"
+  },
+  "peerDependencies": {
+    "vue-demi": ">=0.7.4"
   },
   "author": "aloha66 <https://github.com/aloha66>",
   "license": "ISC",

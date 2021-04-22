@@ -2,7 +2,7 @@ import { PackageManifest } from './types';
 
 export const packages: PackageManifest[] = [
   {
-    name: 'async',
+    name: 'use-request',
     display: 'useRequest',
     external: ['axios'],
     globals: {

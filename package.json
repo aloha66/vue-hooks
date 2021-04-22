@@ -10,9 +10,11 @@
     "build:redirects": "esno scripts/redirects.ts",
     "build:rollup": "rollup -c",
     "clean": "rimraf dist types packages/*/dist",
+    "docs": "vitepress dev packages",
+    "release": "esno scripts/release.ts",
     "watch": "vuedx-typecheck . --watch",
     "test:watch": "jest --watch",
-    "docs": "vitepress dev packages"
+    "update": "esno scripts/update.ts"
   },
   "dependencies": {
     "lodash.debounce": "^4.0.8",
