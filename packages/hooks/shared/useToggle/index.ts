@@ -1,4 +1,4 @@
-import { ref, Ref, isRef } from 'vue';
+import { ref, Ref, isRef } from 'vue-demi';
 
 // 组合类型 typeA | typeB
 

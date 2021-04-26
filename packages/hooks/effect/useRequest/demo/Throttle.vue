@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive } from 'vue-demi';
-import useRequest from '../../use-request/src';
+import useRequest from '../index';
 
 // 为什么要用reactive包装
 // https://www.yuque.com/wdvu71/cwtt2d/ybh561

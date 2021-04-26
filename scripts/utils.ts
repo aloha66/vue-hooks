@@ -13,6 +13,30 @@ export function hasDemo(pkgPath: string) {
 export async function updatePackageJSON() {
   const { version } = await fs.readJSON('package.json');
   for (const { name, description, author } of activePackages) {
-    const packageDir = join(DIR_SRC);
+    const packageDir = join(DIR_SRC, 'hooks', name);
+    const packageJSONPath = join(packageDir, 'package.json');
+    const packageJSON = await fs.readJSON(packageJSONPath);
+
+    packageJSON.version = version;
+    packageJSON.description = description || packageJSON.description;
+    packageJSON.author = author || 'aloha66 <https://github.com/aloha66>';
+    packageJSON.bugs = { url: 'https://github.com/aloha66/vue-hooks-ultra/issues' };
+    packageJSON.homepage =
+      name === 'core'
+        ? 'https://github.com/aloha66/vue-hooks-ultra#readme'
+        : `https://github.com/aloha66/vue-hooks-ultra/tree/main/packages/${name}#readme`;
+    packageJSON.main = './dist/index.cjs.js';
+    packageJSON.types = './dist/index.d.ts';
+    packageJSON.module = './dist/index.esm.js';
+    packageJSON.unpkg = './dist/index.iife.min.js';
+    packageJSON.jsdelivr = './dist/index.iife.min.js';
+    packageJSON.exports = {
+      '.': {
+        import: './dist/index.esm.js',
+        require: './dist/index.cjs.js',
+      },
+      './': './',
+    };
+    await fs.writeJSON(packageJSONPath, packageJSON, { spaces: 2 });
   }
 }

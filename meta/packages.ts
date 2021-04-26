@@ -2,9 +2,9 @@ import { PackageManifest } from './types';
 
 export const packages: PackageManifest[] = [
   {
-    name: 'use-request',
+    name: 'effect',
     display: 'useRequest',
-    external: ['axios'],
+    external: ['axios', 'lodash.debounce', 'lodash.throttle'],
     globals: {
       axios: 'axios',
     },

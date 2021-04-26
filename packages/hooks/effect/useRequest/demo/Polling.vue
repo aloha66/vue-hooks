@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import useRequest from '../../use-request/src';
+import useRequest from '../index';
 
 const { data, cancel, run } = useRequest(
   {

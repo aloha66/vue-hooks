@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import useRequest from '../../use-request/src';
+// import { useRequest } from '../index';
+import useRequest from '../index';
 
 const { data } = useRequest({
   url: 'https://cnodejs.org/api/v1/topics',
