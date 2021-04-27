@@ -9,11 +9,14 @@
 
 ### Todo
 
-- useToggle
+- ~~useToggle~~
 - 单元测试
 - 丰富 vite
-  - vite-plugin-icons
-  - vite-plugin-components
+  - ~~vite-plugin-icons~~
+  - ~~vite-plugin-components~~
   - vite-plugin-pwa
-  - vite-plugin-windicss
-  - vitepress
+  - ~~vite-plugin-windicss~~
+  - ~~vitepress~~
+- 多进程打包
+- 单独打包
+- 直接在cmd传参数 npm run xx -d uu  这样现在会变成npm run xx uu传入script

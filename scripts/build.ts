@@ -14,6 +14,7 @@ async function build() {
   exec('yarn run build:rollup', { stdio: 'inherit' });
 }
 
+// TODO 单个打包
 async function fuzzyMatchBuild(targetArr: string[]) {
   consola.info('Clean up:' + targetArr.join(','));
   const cmd = targetArr.map((name) => `packages/*/${name}/dist`).join(' ');

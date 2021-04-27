@@ -8,7 +8,7 @@ const targets = args._;
 
 const nameList = targets.length > 0 ? targets : activePackages.map((item) => item.name);
 
-// execSync('npm run build', { stdio: 'inherit' });
+execSync('npm run build', { stdio: 'inherit' });
 
 for (const name of nameList) {
   execSync('npm publish --access public', {
