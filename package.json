@@ -12,6 +12,7 @@
     "build:rollup": "rollup -c",
     "clean": "rimraf dist types packages/*/dist",
     "docs": "vitepress dev packages",
+    "publish:ci": "esno scripts/publish.ts",
     "release": "esno scripts/release.ts",
     "watch": "vuedx-typecheck . --watch",
     "test:watch": "jest --watch",
