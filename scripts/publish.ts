@@ -15,5 +15,5 @@ for (const name of nameList) {
     stdio: 'inherit',
     cwd: path.join('packages/hooks', name),
   });
-  consola.success(`Published @aloha66/${name}`);
+  consola.success(`Published @vue-hooks-ultra/${name}`);
 }
