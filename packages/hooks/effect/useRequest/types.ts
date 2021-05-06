@@ -50,8 +50,8 @@ export interface FetchConfig<R, P extends any[]> {
   throttleInterval?: number;
 
   throwOnError?: boolean;
-  isErr: (data: R) => boolean; // 判断是否为错误的函数
-  tryReRequestCount: number; // 错误的时候尝试重连的次数
+  retry?: boolean | number | ((error: R | Error, failureCount: number) => boolean); // 错误的时候尝试重连的次数
+  retryDelay?: number | undefined;
 }
 
 export interface BaseResult<R, P extends any[]> extends FetchResult<R, P> {
@@ -93,7 +93,9 @@ export type BaseOptions<R, P extends any[]> = {
   initialData?: R;
 
   requestMethod?: (service: any) => Promise<any>;
-
-  ready?: boolean;
   throwOnError?: boolean;
+  // 错误的时候尝试重连的次数
+  // 在响应成功，返回结果不是想要的结果时是否视为错误 进而触发重新请求
+  retry?: boolean | number | ((error: R | Error, failureCount: number) => boolean); // 错误的时候尝试重连的次数
+  retryDelay?: number | undefined;
 };

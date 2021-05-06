@@ -29,10 +29,11 @@ function useFetch<R, P extends any[]>(
   // 是否卸载
   let unmountedFlag = false;
   let loadingDelayTimer: ReturnType<typeof setTimeout>; // 返回类型是setTimeout的类型
+  let retryDelayTimer: ReturnType<typeof setTimeout>; // 延迟重新请求
   let pollingTimer: ReturnType<typeof setTimeout>;
   // visible 后，是否继续轮询
   let pollingWhenVisibleFlag = false;
-  let errCount = 0; // 改为在useAsync计数，保证每次手动都重新开始
+  let failureCount = 0; // 改为在useAsync计数，保证每次手动都重新开始
 
   const unsubscribe = [];
   const state = reactive({
@@ -65,6 +66,24 @@ function useFetch<R, P extends any[]>(
     // 抛弃该次请求结果
     const shoundAbandon = () => unmountedFlag || currentCount !== count;
 
+    const doRetry = () => {
+      const retryAction = () => {
+        _run(...args);
+        failureCount++;
+        console.warn(
+          `useRequest has caught the exception, it will automatically sent the request ${config.retry} times, currently it is the ${failureCount} time`,
+        );
+      };
+      if (config.retryDelay) {
+        clearTimeout(retryDelayTimer);
+        retryDelayTimer = setTimeout(() => {
+          retryAction();
+        }, config.retryDelay);
+      } else {
+        retryAction();
+      }
+    };
+
     service(...args)
       .then((res: any) => {
         if (shoundAbandon()) return;
@@ -76,16 +95,12 @@ function useFetch<R, P extends any[]>(
         state.loading = false;
         state.data = formattedResult;
 
-        if (
-          config.isErr(formattedResult) &&
-          config.tryReRequestCount > 0 &&
-          config.tryReRequestCount > errCount
-        ) {
-          _run(...args);
-          errCount++;
-          console.warn(
-            `useRequest has caught the exception, it will automatically sent the request ${config.tryReRequestCount} times, currently it is the ${errCount} time`,
-          );
+        // 如果满足条件须在返回成功onSuccess之前进行拦截
+        // 这里不能把retry写死为true,否则会死循环
+        const retry = config.retry;
+        const shouldRetry = typeof retry === 'function' && retry(formattedResult, failureCount);
+        if (shouldRetry) {
+          doRetry();
           return;
         }
 
@@ -102,12 +117,14 @@ function useFetch<R, P extends any[]>(
         state.error = err;
         state.loading = false;
         state.data = undefined;
-        if (config.tryReRequestCount > 0 && config.tryReRequestCount > errCount) {
-          _run(...args);
-          errCount++;
-          console.warn(
-            `useRequest has caught the exception, it will automatically sent the request ${config.tryReRequestCount} times, currently it is the ${errCount} time`,
-          );
+        // 错误重试逻辑
+        const retry = config.retry;
+        const shouldRetry =
+          retry === true ||
+          (typeof retry === 'number' && retry > failureCount) ||
+          (typeof retry === 'function' && retry(err, failureCount));
+        if (shouldRetry) {
+          doRetry();
         }
         if (config.onError) {
           config.onError(err, args);
@@ -149,8 +166,8 @@ function useFetch<R, P extends any[]>(
     // 如果存在tryReRequestCount，每次在调用run方法时
     // 将进行复位 意图: 调用run方法视为手动触发
     // 每次手动触发复位 可让错误自动重新请求不止运行一次（需求待讨论）
-    if (config.tryReRequestCount) {
-      errCount = 0;
+    if (config.retry) {
+      failureCount = 0;
     }
     count = 0;
 
@@ -255,8 +272,7 @@ function useAsync(service: any, options: any): any {
     defaultParams = [],
     pollingWhenHidden = true,
     initialData,
-    tryReRequestCount = 0, // 发生错误自动重新请求的次数
-    isErr = () => false, // 在响应成功，返回结果不是想要的结果时是否视为错误 进而触发重新请求
+    retry, // 发生错误自动重新请求的次数
     manual = false,
   } = _options;
 
@@ -266,8 +282,7 @@ function useAsync(service: any, options: any): any {
     pollingInterval,
     refreshOnWindowFocus,
     focusTimespan,
-    tryReRequestCount,
-    isErr,
+    retry,
   };
 
   const newstFetchKey = ref(DEFAULT_KEY);

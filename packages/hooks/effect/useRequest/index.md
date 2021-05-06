@@ -29,12 +29,19 @@
 ### 节流
 <Throttle />
 
+### 重试
+可自定义重试规则进行自动重试,默认http状态码非200进行重试
+- `retry?: boolean | number | ((error: R | Error, failureCount: number) => boolean);` 在http状态码为200的时候只能通过函数的形式进行传递,否则会出现请求死循环.
+- `retryDelay?: number` 重试的延迟时间
+<Retry />
+
 ### 参考
 
 - [ahooks](https://github.com/alibaba/hooks/tree/master/packages/use-request)
 - [vue-composable/makeAxios](https://github.com/pikax/vue-composable/blob/master/packages/axios/src/makeAxios.ts)
 - [vueuse/useAxios](https://github.com/vueuse/vueuse/blob/master/packages/integrations/useAxios/index.ts)
 - [ahooks-vue/useRequest](https://github.com/dewfall123/ahooks-vue/blob/master/packages/vhooks/src/useRequest/index.ts)
+- [react-query](https://github.com/tannerlinsley/react-query)
 
 
 
@@ -42,4 +49,5 @@
 import Default from './demo/Default.vue'
 import Polling from './demo/Polling.vue'
 import Throttle from './demo/Throttle.vue'
+import Retry from './demo/Retry.vue'
 </script>
