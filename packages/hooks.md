@@ -1,5 +1,5 @@
 ::: tip
-📰 [Recent updated functions](/recent-updated)
+<!-- 📰 [Recent updated functions](/recent-updated) -->
 :::
 
 # Core Functions
@@ -119,4 +119,4 @@
 
 <br>
 
-More functions avaliable in [Add-ons](./add-ons).
+<!-- More functions avaliable in [Add-ons](./add-ons). -->

@@ -52,6 +52,8 @@ export interface FetchConfig<R, P extends any[]> {
   throwOnError?: boolean;
   retry?: boolean | number | ((error: R | Error, failureCount: number) => boolean); // 错误的时候尝试重连的次数
   retryDelay?: number | undefined;
+  queryKeyHashFn?: boolean | (() => string);
+  queryHash?: string;
 }
 
 export interface BaseResult<R, P extends any[]> extends FetchResult<R, P> {
@@ -98,4 +100,12 @@ export type BaseOptions<R, P extends any[]> = {
   // 在响应成功，返回结果不是想要的结果时是否视为错误 进而触发重新请求
   retry?: boolean | number | ((error: R | Error, failureCount: number) => boolean); // 错误的时候尝试重连的次数
   retryDelay?: number | undefined;
+  queryKeyHashFn?: boolean | (() => string);
+  queryHash?: string;
 };
+
+declare global {
+  interface Window {
+    __vue_hooks_ultra_queryHash: any;
+  }
+}

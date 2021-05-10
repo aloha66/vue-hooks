@@ -15,13 +15,38 @@ import { isDocumentVisible } from './utils';
 import subscribeVisible from './utils/windowVisible';
 import subscribeFocus from './utils/windowFocus';
 import { getCache, setCache } from './utils/cache';
+import { hasObjectPrototype, hashQueryKeyByOptions } from './utils/mergeKey';
 import limit from './utils/limit';
 
 const DEFAULT_KEY = 'VUE_HOOKS_REQUEST_DEFAULT_KEY';
 
+// 合并请求  存储发出的请求
+const mergeMap = new Map();
+const getQueryHash = (service: any, options: any, args: any[]) => {
+  if (hasObjectPrototype(service, 'Promise')) return false;
+  if (hasObjectPrototype(service, 'Function')) {
+    const s = service(...args);
+    return hashQueryKeyByOptions(s, options);
+  }
+  return hashQueryKeyByOptions(service, options);
+};
+
+const mergeRequest = (service: any, options: any, bool: boolean, args: any[]) => {
+  const queryHash = getQueryHash(service, options, args);
+  if (!options.queryHash) options.queryHash = queryHash;
+  if (options.queryHash) {
+    mergeMap.set(options.queryHash, bool);
+    // 重置 loading重新设置为空
+    if (false === bool) {
+      delete options.queryHash;
+    }
+  }
+};
+
 function useFetch<R, P extends any[]>(
   service: Service<R, P>,
   config: FetchConfig<R, P>,
+  notPromiseService: any,
   initState?: { data?: any; error?: any; params?: any; loading?: any },
 ) {
   // 请求时序
@@ -55,11 +80,13 @@ function useFetch<R, P extends any[]>(
     count++;
     const currentCount = count;
     state.loading = !config.loadingDelay;
+    mergeRequest(notPromiseService, config, !config.loadingDelay, args);
     state.params = args;
 
     if (config.loadingDelay) {
       loadingDelayTimer = setTimeout(() => {
         state.loading = true;
+        mergeRequest(notPromiseService, config, true, args);
       }, config.loadingDelay);
     }
 
@@ -93,6 +120,7 @@ function useFetch<R, P extends any[]>(
         const formattedResult = config.formatResult ? config.formatResult(res) : res;
         state.error = undefined;
         state.loading = false;
+        mergeRequest(notPromiseService, config, false, args);
         state.data = formattedResult;
 
         // 如果满足条件须在返回成功onSuccess之前进行拦截
@@ -116,6 +144,7 @@ function useFetch<R, P extends any[]>(
         }
         state.error = err;
         state.loading = false;
+        mergeRequest(notPromiseService, config, false, args);
         state.data = undefined;
         // 错误重试逻辑
         const retry = config.retry;
@@ -257,8 +286,9 @@ function useFetch<R, P extends any[]>(
 function useAsync<R, P extends any[]>(
   service: Service<R, P>,
   options?: BaseOptions<R, P>,
+  notPromiseService?: Service<R, P>,
 ): BaseResult<R, P>;
-function useAsync(service: any, options: any): any {
+function useAsync(service: any, options: any, notPromiseService): any {
   const _options = options;
   const {
     refreshDeps = [],
@@ -291,6 +321,12 @@ function useAsync(service: any, options: any): any {
   const curFetch = ref({});
 
   const run = (...args: any) => {
+    const queryHash = getQueryHash(notPromiseService, options.queryHash, args);
+    if (queryHash && mergeMap.get(queryHash)) {
+      console.warn('合并了请求', queryHash);
+      return;
+    }
+
     // 缓存处理开始
     // 如果有 缓存，则从缓存中读数据
     if (cacheKey) {
@@ -327,13 +363,9 @@ function useAsync(service: any, options: any): any {
     const currentFetchKey = newstFetchKey.value;
     let currentFetch = fetches[currentFetchKey];
     if (!currentFetch) {
-      const newFetch = useFetch(
-        service,
-        { ..._options, ...config },
-        {
-          data: initialData,
-        },
-      );
+      const newFetch = useFetch(service, { ..._options, ...config }, notPromiseService, {
+        data: initialData,
+      });
       currentFetch = newFetch;
 
       fetches[currentFetchKey] = currentFetch;

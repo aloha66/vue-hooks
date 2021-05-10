@@ -5,17 +5,17 @@ const service = axios.create({
 });
 
 service.interceptors.request.use(
-  config => {
+  (config) => {
     config.headers.common['Authorization'] = localStorage.getItem('AUTH_TOKEN');
 
     return config;
   },
-  error => {
+  (error) => {
     return Promise.reject(error);
   },
 );
 
-service.interceptors.response.use(response => {
+service.interceptors.response.use((response) => {
   return response.data;
 });
 

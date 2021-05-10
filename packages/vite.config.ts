@@ -29,7 +29,7 @@ const config: UserConfig = {
         if (!id.endsWith('.md')) return null;
         // const [pkg, name, i] = id.split('/').slice(-3);
         const regexp = /packages(.*)(index.md)/;
-        const [, pkgPath, i] = id.match(regexp);
+        const [, pkgPath, i] = id.match(regexp) ?? [];
 
         if (i === 'index.md') {
           const frontmatterEnds = code.indexOf('---\n\n') + 4;

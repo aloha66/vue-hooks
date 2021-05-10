@@ -56,7 +56,7 @@ export default {
 })
 ```
 
-Refer to [functions list](./functions) for more details.
+<!-- Refer to [functions list](./functions) for more details. -->
 
 ## Best Practice
 

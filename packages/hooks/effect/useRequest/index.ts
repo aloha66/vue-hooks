@@ -1,5 +1,6 @@
 import { inject } from 'vue-demi';
 import useAsync from './useAsync';
+
 import { CombineService, BaseOptions, BaseResult } from './types';
 
 export function useRequest<R = any, P extends any[] = any>(
@@ -62,7 +63,7 @@ export function useRequest(service: any, options: any = {}): any {
           fn.then(reslove).catch(reject);
         });
   }
-  return useAsync(promiseService, finalOptions);
+  return useAsync(promiseService, finalOptions, service);
 }
 
 export default useRequest;
