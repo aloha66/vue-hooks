@@ -25,7 +25,20 @@
 
 ## 代码演示
 
+### 默认请求
+<Default />
 
+### 轮询
+<!-- <Polling/> -->
+
+### 节流
+<Throttle />
+
+### 重试
+可自定义重试规则进行自动重试,默认http状态码非200进行重试
+- `retry?: boolean | number | ((error: R | Error, failureCount: number) => boolean);` 在http状态码为200的时候只能通过函数的形式进行传递,否则会出现请求死循环.
+- `retryDelay?: number` 重试的延迟时间
+<Retry />
 
 ### 合并请求
 <Merge />
