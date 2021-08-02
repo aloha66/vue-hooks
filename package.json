@@ -23,8 +23,8 @@
   "dependencies": {
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
-    "vue": "^3.0.11",
-    "vue-demi": "^0.7.4"
+    "vue": "^3.1.4",
+    "vue-demi": "^0.9.1"
   },
   "devDependencies": {
     "@docsearch/css": "^1.0.0-alpha.28",
@@ -53,6 +53,6 @@
     "vite-plugin-components": "^0.8.3",
     "vite-plugin-icons": "^0.4.0",
     "vite-plugin-windicss": "^0.12.5",
-    "vitepress": "^0.13.0"
+    "vitepress": "^0.15.6"
   }
 }

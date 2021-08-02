@@ -1,17 +1,14 @@
-<template>
-  <div class="algolia-search-box" id="docsearch" />
-</template>
-
 <script setup lang="ts">
 import '@docsearch/css'
-import { useRoute, useRouter } from 'vitepress'
-import { defineProps, getCurrentInstance, onMounted, watch } from 'vue'
 import docsearch from '@docsearch/js'
+import { useRoute, useRouter, useData } from 'vitepress'
+import { defineProps, getCurrentInstance, onMounted, watch } from 'vue'
 import type { DefaultTheme } from '../config'
 import type { DocSearchHit } from '@docsearch/react/dist/esm/types'
 
 const props = defineProps<{
   options: DefaultTheme.AlgoliaSearchOptions
+  multilang?: boolean
 }>()
 
 const vm = getCurrentInstance()
@@ -53,12 +50,24 @@ function update(options: any) {
   }
 }
 
+const { lang } = useData()
+
 function initialize(userOptions: any) {
+  // if the user has multiple locales, the search results should be filtered
+  // based on the language
+  const facetFilters = props.multilang ? ['language:' + lang.value] : []
+
   docsearch(
     Object.assign({}, userOptions, {
       container: '#docsearch',
 
-      searchParameters: Object.assign({}, userOptions.searchParameters),
+      searchParameters: Object.assign({}, userOptions.searchParameters, {
+        // pass a custom lang facetFilter to allow multiple language search
+        // https://github.com/algolia/docsearch-configs/pull/3942
+        facetFilters: facetFilters.concat(
+          userOptions.searchParameters?.facetFilters || []
+        )
+      }),
 
       navigator: {
         navigate: ({ suggestionUrl }: { suggestionUrl: string }) => {
@@ -131,6 +140,10 @@ function initialize(userOptions: any) {
 }
 </script>
 
+<template>
+  <div class="algolia-search-box" id="docsearch" />
+</template>
+
 <style>
 .algolia-search-box {
   padding-top: 1px;
@@ -139,13 +152,12 @@ function initialize(userOptions: any) {
 @media (min-width: 720px) {
   .algolia-search-box {
     padding-left: 8px;
-    min-width: 176.3px; /* avoid layout shift */
   }
 }
 
 @media (min-width: 751px) {
   .algolia-search-box {
-    padding-left: 8px;
+    min-width: 176.3px; /* avoid layout shift */
   }
 
   .algolia-search-box .DocSearch-Button-Placeholder {
