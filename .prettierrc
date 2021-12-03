@@ -1,13 +1,5 @@
-{
-  "trailingComma": "all",
-  "singleQuote": true,
-  "proseWrap": "never",
-  "printWidth": 100,
-  "jsxBracketSameLine": false,
-  "overrides": [
-    {
-      "files": ".prettierrc",
-      "options": { "parser": "json" }
-    }
-  ]
-}
+semi: false
+singleQuote: true
+printWidth: 80
+arrowParens: 'avoid'
+trailingComma: 'es5'

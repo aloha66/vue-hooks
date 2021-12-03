@@ -1,6 +1,8 @@
 {
-  "name": "vite-project",
+  "name": "useRequest",
   "version": "0.0.0",
+  "main": "./index.ts",
+  "module": "./index.ts",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
