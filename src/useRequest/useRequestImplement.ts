@@ -17,8 +17,8 @@ function useRequestImplement<TData, TParams extends any[]>(
 
   const fetchOptions = {
     ...contextConfig,
-    manual,
-    ...rest,
+    // manual,
+    ...options,
   }
 
   // @ts-expect-error
@@ -76,7 +76,7 @@ function useRequestImplement<TData, TParams extends any[]>(
   // run all plugins hooks
   fetchInstance.pluginImpls = plugins.map(p => p(fetchInstance, fetchOptions))
 
-  if (!manual) {
+  if (!fetchOptions.manual) {
     // useCachePlugin can set fetchInstance.state.params from cache when init
     const params = fetchInstance.state.params || options.defaultParams || []
     // @ts-ignore
@@ -96,6 +96,9 @@ function useRequestImplement<TData, TParams extends any[]>(
     // @ts-expect-error
     run: fetchInstance.run.bind(fetchInstance),
     refresh: fetchInstance.refresh.bind(fetchInstance),
+    // @ts-expect-error
+    runAsync: fetchInstance.runAsync.bind(fetchInstance),
+    refreshAsync: fetchInstance.refreshAsync.bind(fetchInstance),
   } as Result<TData, TParams>
 }
 
