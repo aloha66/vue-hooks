@@ -2,8 +2,10 @@
   "name": "vite-project",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
+    "build:rollup": "rollup -c",
+    "clean": "rimraf dist types packages/*/dist",
+    "dev": "vite",
     "serve": "vite preview"
   },
   "dependencies": {
@@ -12,7 +14,9 @@
     "vue-demi": "^0.12.1"
   },
   "devDependencies": {
+    "@types/node": "^16.11.11",
     "@vitejs/plugin-vue": "^1.9.3",
+    "consola": "^2.15.3",
     "typescript": "^4.4.3",
     "vite": "^2.6.4",
     "vue-tsc": "^0.3.0"
