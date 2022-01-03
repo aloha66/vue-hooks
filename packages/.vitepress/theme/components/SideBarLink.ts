@@ -1,8 +1,14 @@
-import { FunctionalComponent, h, VNode } from 'vue'
-import { useRoute, useData } from 'vitepress'
-import { Header } from '../../shared'
-import { DefaultTheme } from '../config'
-import { joinUrl, isActive } from '../utils'
+import { h } from 'vue'
+import type { FunctionalComponent, VNode } from 'vue'
+import { useData, useRoute } from 'vitepress'
+import type { DefaultTheme } from '../config'
+import { isActive, joinUrl } from '../utils'
+
+export interface Header {
+  level: number
+  title: string
+  slug: string
+}
 
 interface HeaderWithChildren extends Header {
   children?: Header[]
@@ -11,7 +17,7 @@ interface HeaderWithChildren extends Header {
 export const SideBarLink: FunctionalComponent<{
   item: DefaultTheme.SideBarItem
   depth?: number
-}> = (props) => {
+}> = props => {
   const route = useRoute()
   const { site, frontmatter } = useData()
   const depth = props.depth || 1
@@ -32,23 +38,19 @@ export const SideBarLink: FunctionalComponent<{
       link ? 'a' : 'p',
       {
         class: { 'sidebar-link-item': true, active },
-        href: link
+        href: link,
       },
       text
     ),
-    childItems
+    childItems,
   ])
 }
 
 function resolveLink(base: string, path?: string): string | undefined {
-  if (path === undefined) {
-    return path
-  }
+  if (path === undefined) return path
 
   // keep relative hash to the same page
-  if (path.startsWith('#')) {
-    return path
-  }
+  if (path.startsWith('#')) return path
 
   return joinUrl(base, path)
 }
@@ -63,7 +65,7 @@ function createChildren(
     return h(
       'ul',
       { class: 'sidebar-links' },
-      children.map((c) => {
+      children.map(c => {
         return h(SideBarLink, { item: c, depth })
       })
     )
@@ -79,22 +81,19 @@ function resolveHeaders(headers: Header[]): DefaultTheme.SideBarItem[] {
 }
 
 function groupHeaders(headers: Header[]): HeaderWithChildren[] {
-  headers = headers.map((h) => Object.assign({}, h))
+  headers = headers.map(h => Object.assign({}, h))
   let lastH2: HeaderWithChildren
-  headers.forEach((h) => {
-    if (h.level === 2) {
-      lastH2 = h
-    } else if (lastH2) {
-      ;(lastH2.children || (lastH2.children = [])).push(h)
-    }
+  headers.forEach(h => {
+    if (h.level === 2) lastH2 = h
+    else if (lastH2) (lastH2.children || (lastH2.children = [])).push(h)
   })
-  return headers.filter((h) => h.level === 2)
+  return headers.filter(h => h.level === 2)
 }
 
 function mapHeaders(headers: HeaderWithChildren[]): DefaultTheme.SideBarItem[] {
-  return headers.map((header) => ({
+  return headers.map(header => ({
     text: header.title,
     link: `#${header.slug}`,
-    children: header.children ? mapHeaders(header.children) : undefined
+    children: header.children ? mapHeaders(header.children) : undefined,
   }))
 }

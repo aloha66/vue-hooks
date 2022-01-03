@@ -1,3 +1,5 @@
+import type { UserConfig } from 'vitepress'
+
 const categoriesOrder = [
   'Browser',
   'Sensors',
@@ -5,106 +7,139 @@ const categoriesOrder = [
   'State',
   'Component',
   'Watch',
+  'Formatters',
   'Utilities',
   'Misc',
 ]
 
-const config = {
+const Guide = [
+  { text: 'Getting Started', link: '/guide/index' },
+  { text: 'Best Practice', link: '/guide/best-practice' },
+  { text: 'Configurations', link: '/guide/config' },
+  { text: 'Components', link: '/guide/components' },
+  { text: 'Contributing', link: '/contributing' },
+  { text: 'Guidelines', link: '/guidelines' },
+]
+
+const Functions = [
+  { text: 'Animation', link: '/functions#animation' },
+  { text: 'Browser', link: '/functions#browser' },
+  { text: 'Component', link: '/functions#component' },
+  { text: 'Formatters', link: '/functions#formatters' },
+  { text: 'Misc', link: '/functions#misc' },
+  { text: 'Sensors', link: '/functions#sensors' },
+  { text: 'State', link: '/functions#state' },
+  { text: 'Utilities', link: '/functions#utilities' },
+  { text: 'Watch', link: '/functions#watch' },
+]
+
+const DefaultSideBar = [
+  { text: 'Guide', children: Guide },
+  { text: 'Core Functions', children: Functions },
+  { text: 'Add-ons', link: '/add-ons' },
+  { text: 'Ecosystem', link: '/ecosystem' },
+  { text: 'Export Size', link: '/export-size' },
+  { text: 'Recently Updated', link: '/recently-updated' },
+]
+
+const FunctionsSideBar = getFunctionsSideBar()
+
+const config: UserConfig = {
+  title: 'VueUse',
+  description: 'Collection of essential Vue Composition Utilities',
   lang: 'en-US',
-  title: 'VitePress',
-  description: 'Vite & Vue powered static site generator.',
-
   themeConfig: {
-    repo: 'vuejs/vitepress',
-    docsDir: 'docs',
-
+    logo: '/favicon.svg',
+    repo: 'vueuse/vueuse',
+    docsDir: 'packages',
     editLinks: true,
-    editLinkText: 'Edit this page on GitHub',
+    editLinkText: 'Edit this page',
     lastUpdated: 'Last Updated',
-
-    algolia: {
-      apiKey: 'c57105e511faa5558547599f120ceeba',
-      indexName: 'vitepress',
-    },
-
-    // carbonAds: {
-    //   carbon: 'CEBDT27Y',
-    //   custom: 'CKYD62QM',
-    //   placement: 'vuejsorg',
-    // },
-
-    // activeMatch: '^/$|^/guide/'  | 两项之间选一个  以/开头或者guide开头
     nav: [
-      { text: 'Guide', link: '/guide' },
+      // { text: 'Home', link: '/' },s
       {
-        text: 'Hooks',
-        link: '/hooks',
-        items: categoriesOrder.map(c => {
-          return {
-            text: c,
-            activeMatch: '___', // never active
-            link: `/hooks#${c.toLowerCase()}`,
-          }
-        }),
+        text: 'Guide',
+        items: Guide,
+      },
+
+      {
+        text: 'Add-ons',
+        link: '/add-ons',
       },
       {
-        text: 'Release Notes',
-        link: 'https://github.com/vuejs/vitepress/releases',
+        text: 'More',
+        items: [
+          { text: 'Playground', link: 'https://play.vueuse.org' },
+          { text: 'Ecosystem', link: '/ecosystem' },
+          { text: 'Export Size', link: '/export-size' },
+        ],
       },
     ],
-
     sidebar: {
-      '/guide/': getGuideSidebar(),
-      '/hooks': getConfigSidebar(),
-      '/': getGuideSidebar(),
+      '/guide/': DefaultSideBar,
+      '/contributing': DefaultSideBar,
+      '/add-ons': DefaultSideBar,
+      '/ecosystem': DefaultSideBar,
+      '/guidelines': DefaultSideBar,
+      '/export-size': DefaultSideBar,
+      '/recently-updated': DefaultSideBar,
+
+      '/functions': FunctionsSideBar,
+      '/core/': FunctionsSideBar,
+      '/shared/': FunctionsSideBar,
+      '/router/': FunctionsSideBar,
+      '/electron/': FunctionsSideBar,
+      '/rxjs/': FunctionsSideBar,
+      '/integrations/': FunctionsSideBar,
+      '/firebase/': FunctionsSideBar,
+    },
+    algolia: {
+      appId: 'NBQWY48OOR',
+      apiKey: 'c5fd82eb1100c2110c1690e0756d8ba5',
+      indexName: 'vueuse',
     },
   },
+  head: [
+    ['meta', { name: 'theme-color', content: '#ffffff' }],
+    ['link', { rel: 'icon', href: '/favicon-32x32.png', type: 'image/png' }],
+    ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
+    ['meta', { name: 'author', content: 'Anthony Fu' }],
+    ['meta', { property: 'og:title', content: 'VueUse' }],
+    ['meta', { property: 'og:image', content: 'https://vueuse.org/og.png' }],
+    [
+      'meta',
+      {
+        property: 'og:description',
+        content: 'Collection of essential Vue Composition Utilities',
+      },
+    ],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:creator', content: '@antfu7' }],
+    ['meta', { name: 'twitter:image', content: 'https://vueuse.org/og.png' }],
+
+    ['link', { rel: 'dns-prefetch', href: 'https://fonts.gstatic.com' }],
+    [
+      'link',
+      {
+        rel: 'preconnect',
+        crossorigin: 'anonymous',
+        href: 'https://fonts.gstatic.com',
+      },
+    ],
+    [
+      'link',
+      {
+        href: 'https://fonts.googleapis.com/css2?family=Fira+Code&display=swap',
+        rel: 'stylesheet',
+      },
+    ],
+  ],
 }
 
-module.exports = config
+function getFunctionsSideBar() {
+  const links = []
 
-function getGuideSidebar() {
-  return [
-    {
-      text: 'Introduction',
-      children: [
-        { text: 'What is VitePress?', link: '/' },
-        { text: 'Getting Started', link: '/guide/getting-started' },
-        { text: 'Configuration', link: '/guide/configuration' },
-        { text: 'Asset Handling', link: '/guide/assets' },
-        { text: 'Markdown Extensions', link: '/guide/markdown' },
-        { text: 'Deploying', link: '/guide/deploy' },
-      ],
-    },
-    {
-      text: 'Advanced',
-      children: [
-        { text: 'Frontmatter', link: '/guide/frontmatter' },
-        { text: 'Global Computed', link: '/guide/global-computed' },
-        { text: 'Global Component', link: '/guide/global-component' },
-        { text: 'Customization', link: '/guide/customization' },
-        {
-          text: 'Differences from Vuepress',
-          link: '/guide/differences-from-vuepress',
-        },
-      ],
-    },
-  ]
+  return links
 }
 
-function getConfigSidebar() {
-  return [
-    {
-      text: 'App Config',
-      children: [{ text: 'Basics', link: '/config/basics' }],
-    },
-    {
-      text: 'Theme Config',
-      children: [
-        { text: 'Homepage', link: '/config/homepage' },
-        { text: 'Algolia Search', link: '/config/algolia-search' },
-        { text: 'Carbon Ads', link: '/config/carbon-ads' },
-      ],
-    },
-  ]
-}
+export default config

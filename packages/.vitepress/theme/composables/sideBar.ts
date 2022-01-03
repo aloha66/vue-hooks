@@ -1,9 +1,9 @@
 import { computed } from 'vue'
-import { useRoute, useData } from 'vitepress'
-import { Header } from '../../shared'
+import type { Header } from 'vitepress'
+import { useData, useRoute } from 'vitepress'
 import { useActiveSidebarLinks } from '../composables/activeSidebarLink'
 import { getSideBarConfig } from '../support/sideBar'
-import { DefaultTheme } from '../config'
+import type { DefaultTheme } from '../config'
 
 export function useSideBar() {
   const route = useRoute()
@@ -18,14 +18,11 @@ export function useSideBar() {
     const sidebarDepth = route.data.frontmatter.sidebarDepth
 
     // if it's `false`, we'll just return an empty array here.
-    if (frontSidebar === false) {
-      return []
-    }
+    if (frontSidebar === false) return []
 
     // if it's `atuo`, render headers of the current page
-    if (frontSidebar === 'auto') {
+    if (frontSidebar === 'auto')
       return resolveAutoSidebar(headers, sidebarDepth)
-    }
 
     // now, there's no sidebar setting at frontmatter; let's see the configs
     const themeSidebar = getSideBarConfig(
@@ -33,13 +30,10 @@ export function useSideBar() {
       route.data.relativePath
     )
 
-    if (themeSidebar === false) {
-      return []
-    }
+    if (themeSidebar === false) return []
 
-    if (themeSidebar === 'auto') {
+    if (themeSidebar === 'auto')
       return resolveAutoSidebar(headers, sidebarDepth)
-    }
 
     return themeSidebar
   })
@@ -51,19 +45,15 @@ function resolveAutoSidebar(
 ): DefaultTheme.SideBarItem[] {
   const ret: DefaultTheme.SideBarItem[] = []
 
-  if (headers === undefined) {
-    return []
-  }
+  if (headers === undefined) return []
 
-  let lastH2: DefaultTheme.SideBarItem | undefined = undefined
+  let lastH2: DefaultTheme.SideBarItem | undefined
   headers.forEach(({ level, title, slug }) => {
-    if (level - 1 > depth) {
-      return
-    }
+    if (level - 1 > depth) return
 
     const item: DefaultTheme.SideBarItem = {
       text: title,
-      link: `#${slug}`
+      link: `#${slug}`,
     }
     if (level === 2) {
       lastH2 = item
