@@ -8,6 +8,11 @@ import NavBar from './components/NavBar.vue'
 import SideBar from './components/SideBar.vue'
 import Page from './components/Page.vue'
 
+import globalProvide from './globalProvide'
+
+// 预留全局配置
+globalProvide()
+
 const Home = defineAsyncComponent(() => import('./components/Home.vue'))
 
 const NoopComponent = () => null
@@ -74,8 +79,8 @@ const pageClasses = computed(() => {
     {
       'no-navbar': !showNavbar.value,
       'sidebar-open': openSideBar.value,
-      'no-sidebar': !showSidebar.value
-    }
+      'no-sidebar': !showSidebar.value,
+    },
   ]
 })
 </script>

@@ -6,7 +6,6 @@ const useRefreshDeps: Plugin<any, any[]> = (
   { manual, refreshDeps = [] }
 ) => {
   watch(refreshDeps, () => {
-    console.log('refreshDeps', refreshDeps)
     if (!manual) {
       fetchInstance.refresh()
     }
