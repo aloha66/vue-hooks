@@ -1,5 +1,6 @@
 import useRefreshDeps from './plugins/useRefreshDeps'
 import useLoadingDelayPlugin from './plugins/useLoadingDelayPlugin'
+import useRetryPlugin from './plugins/useRetryPlugin'
 import type { Options, Plugin, CombineService } from './types'
 import useRequestImplement from './useRequestImplement'
 
@@ -12,6 +13,7 @@ function useRequest<TData, TParams extends any[]>(
     ...(plugins || []),
     useRefreshDeps,
     useLoadingDelayPlugin,
+    useRetryPlugin,
   ] as Plugin<TData, TParams>[])
 }
 

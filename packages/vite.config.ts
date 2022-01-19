@@ -6,6 +6,7 @@ const config: UserConfig = {
   resolve: {
     alias: {
       '@vue-hooks-ultra/effect': resolve(__dirname, 'hooks/effect/index.ts'),
+      '@test': resolve(__dirname, '../packages/.test'),
       //   '@vueuse/core': resolve(__dirname, 'core/index.ts'),
       //   '@vueuse/components': resolve(__dirname, 'components/index.ts'),
       //   '@vueuse/docs-utils': resolve(__dirname, '.vitepress/utils.ts'),

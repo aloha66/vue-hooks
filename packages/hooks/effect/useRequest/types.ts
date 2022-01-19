@@ -63,7 +63,7 @@ export interface Options<TData, TParams extends any[]> {
   defaultParams?: TParams
 
   // refreshDeps
-  refreshDeps?: ReadonlyArray<any>
+  refreshDeps?: ReadonlyArray<Ref<unknown>>
 
   // loading delay
   loadingDelay?: number
@@ -124,3 +124,5 @@ export interface Result<TData, TParams extends any[]> {
   runAsync: Fetch<TData, TParams>['runAsync']
   mutate: Fetch<TData, TParams>['mutate']
 }
+
+export type Timeout = ReturnType<typeof setTimeout>

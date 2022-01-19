@@ -42,6 +42,26 @@ const DefaultSideBar = [
   { text: 'Recently Updated', link: '/recently-updated' },
 ]
 
+const useRequest = [
+  { text: '快速上手', link: '/hooks/effect/useRequest/doc/' },
+  { text: '基础用法', link: '/hooks/effect/useRequest/doc/basic' },
+  { text: 'Loading Delay', link: '/hooks/effect/useRequest/doc/loadingDelay' },
+  { text: '依赖刷新', link: '/hooks/effect/useRequest/doc/refreshDeps' },
+  { text: '错误重试', link: '/hooks/effect/useRequest/doc/retry' },
+  { text: 'Guidelines', link: '/guidelines' },
+]
+
+const Effect = [
+  {
+    text: 'useRequest',
+    // link: '/hooks/effect/useRequest/doc/',
+    children: useRequest,
+  },
+]
+
+const EffectSideBar = [{ text: 'effect', children: Effect }]
+
+const UseRequestSideBar = [{ text: 'useRequest', children: useRequest }]
 const FunctionsSideBar = getFunctionsSideBar()
 
 const config: UserConfig = {
@@ -84,6 +104,7 @@ const config: UserConfig = {
       '/export-size': DefaultSideBar,
       '/recently-updated': DefaultSideBar,
 
+      '/hook': UseRequestSideBar,
       '/functions': FunctionsSideBar,
       '/core/': FunctionsSideBar,
       '/shared/': FunctionsSideBar,

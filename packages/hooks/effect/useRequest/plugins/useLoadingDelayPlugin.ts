@@ -1,10 +1,10 @@
-import type { Plugin } from '../types'
+import type { Plugin, Timeout } from '../types'
 
 const useLoadingDelayPlugin: Plugin<any, any[]> = (
   fetchInstance,
   { loadingDelay }
 ) => {
-  let timer: ReturnType<typeof setTimeout>
+  let timer: Timeout
   if (!loadingDelay) return {}
 
   const cancelTimeout = () => {
