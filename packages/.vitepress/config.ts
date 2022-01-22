@@ -48,7 +48,13 @@ const useRequest = [
   { text: 'Loading Delay', link: '/hooks/effect/useRequest/doc/loadingDelay' },
   { text: '依赖刷新', link: '/hooks/effect/useRequest/doc/refreshDeps' },
   { text: '错误重试', link: '/hooks/effect/useRequest/doc/retry' },
-  { text: 'Guidelines', link: '/guidelines' },
+  { text: '节流', link: '/hooks/effect/useRequest/doc/throttle' },
+  { text: '防抖', link: '/hooks/effect/useRequest/doc/debounce' },
+  { text: '轮询', link: '/hooks/effect/useRequest/doc/polling' },
+  {
+    text: '屏幕聚焦重新请求',
+    link: '/hooks/effect/useRequest/doc/refreshOnWindowFocus',
+  },
 ]
 
 const Effect = [

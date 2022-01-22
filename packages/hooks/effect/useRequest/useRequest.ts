@@ -1,6 +1,10 @@
 import useRefreshDeps from './plugins/useRefreshDeps'
 import useLoadingDelayPlugin from './plugins/useLoadingDelayPlugin'
 import useRetryPlugin from './plugins/useRetryPlugin'
+import useThrottlePlugin from './plugins/useThrottlePlugin'
+import useDebouncePlugin from './plugins/useDebouncePlugin'
+import usePollingPlugin from './plugins/usePollingPlugin'
+import useRefreshOnWindowFocusPlugin from './plugins/useRefreshOnWindowFocusPlugin'
 import type { Options, Plugin, CombineService } from './types'
 import useRequestImplement from './useRequestImplement'
 
@@ -14,6 +18,10 @@ function useRequest<TData, TParams extends any[]>(
     useRefreshDeps,
     useLoadingDelayPlugin,
     useRetryPlugin,
+    useThrottlePlugin,
+    useDebouncePlugin,
+    usePollingPlugin,
+    useRefreshOnWindowFocusPlugin,
   ] as Plugin<TData, TParams>[])
 }
 

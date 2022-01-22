@@ -1,0 +1,43 @@
+{
+  "name": "@vue-hooks-ultra/effect",
+  "version": "0.1.0",
+  "description": "Enables realtime bindings for Firebase",
+  "keywords": [
+    "vue",
+    "ahooks",
+    "utils",
+    "effect",
+    "useRequest"
+  ],
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.cjs",
+      "types": "./index.d.ts"
+    },
+    "./*": "./*",
+    "./nuxt": {
+      "import": "./nuxt.mjs",
+      "require": "./nuxt.cjs",
+      "types": "./nuxt.d.ts"
+    }
+  },
+  "main": "./index.cjs",
+  "types": "./index.d.ts",
+  "module": "./index.mjs",
+  "peerDependencies": {
+    "@vue/composition-api": "^1.1.0",
+    "vue": "^2.6.0 || ^3.2.0"
+  },
+  "peerDependenciesMeta": {
+    "vue": {
+      "optional": true
+    },
+    "@vue/composition-api": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "vue-demi": "^0.12.1"
+  }
+}

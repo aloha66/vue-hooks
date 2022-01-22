@@ -13,6 +13,25 @@ const config: UserConfig = {
     },
     dedupe: ['vue', 'vue-demi', '@vue/runtime-core'],
   },
+  optimizeDeps: {
+    exclude: [
+      'vue-demi',
+      // '@vue/theme',
+      // '@vueuse/shared',
+      // '@vueuse/core',
+      // 'body-scroll-lock',
+    ],
+    // include: [
+    //   'axios',
+    //   'dayjs',
+    //   'js-yaml',
+    //   'nprogress',
+    //   'qrcode',
+    //   'rxjs',
+    //   'tslib',
+    //   'universal-cookie',
+    // ],
+  },
   plugins: [
     AutoImport({
       /* options */

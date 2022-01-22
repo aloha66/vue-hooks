@@ -4,6 +4,7 @@ import esbuild, { Options as ESBuildOptions } from 'rollup-plugin-esbuild'
 import dts from 'rollup-plugin-dts'
 import type { OutputOptions, Plugin, RollupOptions } from 'rollup'
 import { packages } from '../meta/packages'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 // const VUE_DEMI_IIFE = fs.readFileSync(
 //   require.resolve('vue-demi/lib/index.iife.js'),
@@ -18,7 +19,7 @@ const configs: RollupOptions[] = []
 //   },
 // }
 
-const buildPlugins = [esbuild()]
+const buildPlugins = [esbuild(), visualizer()]
 
 const dtsPlugin = [dts()]
 

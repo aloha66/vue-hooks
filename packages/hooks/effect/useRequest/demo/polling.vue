@@ -1,0 +1,22 @@
+<script setup lang="ts">
+import { useRequest } from '@vue-hooks-ultra/effect'
+
+const { data, loading, run, cancel } = useRequest<
+  { data: { id: string } },
+  any
+>('https://cnodejs.org/api/v1/topic/5433d5e4e737cbe96dcef312', {
+  pollingInterval: 3000,
+  pollingWhenHidden: false,
+})
+</script>
+<template>
+  <div>
+    输出
+    <button @click="run">请求</button>
+    <button @click="cancel">取消请求</button>
+    <template v-if="loading">loading</template>
+    <template v-else>
+      {{ data?.data.id }}
+    </template>
+  </div>
+</template>
