@@ -5,6 +5,7 @@ import useThrottlePlugin from './plugins/useThrottlePlugin'
 import useDebouncePlugin from './plugins/useDebouncePlugin'
 import usePollingPlugin from './plugins/usePollingPlugin'
 import useRefreshOnWindowFocusPlugin from './plugins/useRefreshOnWindowFocusPlugin'
+import useCachePlugin from './plugins/useCachePlugin'
 import type { Options, Plugin, CombineService } from './types'
 import useRequestImplement from './useRequestImplement'
 
@@ -22,6 +23,7 @@ function useRequest<TData, TParams extends any[]>(
     useDebouncePlugin,
     usePollingPlugin,
     useRefreshOnWindowFocusPlugin,
+    useCachePlugin,
   ] as Plugin<TData, TParams>[])
 }
 

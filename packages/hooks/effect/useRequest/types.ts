@@ -1,6 +1,7 @@
 import type Fetch from './Fetch'
 
 import { Ref } from 'vue-demi'
+import { CachedData } from './utils/cache'
 
 export type Subscribe = () => void
 
@@ -91,6 +92,8 @@ export interface Options<TData, TParams extends any[]> {
   cacheKey?: string
   cacheTime?: number
   staleTime?: number
+  setCache?: (data: CachedData<TData, TParams>) => void
+  getCache?: (params: TParams) => CachedData<TData, TParams> | undefined
 
   // retry
   retryCount?: number

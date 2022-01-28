@@ -57,18 +57,35 @@ export default class Fetch<TData, TParams extends any[]> {
       ...state
     } = this.runPluginHandler('onBefore', params)
 
+    // stop request
+    if (stopNow) {
+      return new Promise(() => {})
+    }
+    debugger
     this.setState({
       loading: true,
       params,
       ...state,
     })
 
+    // return now
+    if (returnNow) {
+      return Promise.resolve(state.data)
+    }
+
     this.options.onBefore?.(params)
 
     try {
       // 请求中
-      // TODO 缓存插件
-      let servicePromise = this.service(...params)
+      // replace service
+      let { servicePromise } = this.runPluginHandler(
+        'onRequest',
+        this.service,
+        params
+      )
+      if (!servicePromise) {
+        servicePromise = this.service(...params)
+      }
 
       const res = await servicePromise
 

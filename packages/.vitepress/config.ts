@@ -55,6 +55,7 @@ const useRequest = [
     text: '屏幕聚焦重新请求',
     link: '/hooks/effect/useRequest/doc/refreshOnWindowFocus',
   },
+  { text: '缓存 & SWR', link: '/hooks/effect/useRequest/doc/cache' },
 ]
 
 const Effect = [
