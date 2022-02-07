@@ -21,8 +21,10 @@ jobs:
      runs-on: ubuntu-latest
      steps:
         - uses: actions/checkout@v2
-        - name: build
+        - name: Install yarn
           run: yarn
+
+        - name: docs:build
           run: npm run docs:build
           
         - name: GitHub Pages v3
