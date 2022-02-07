@@ -12,35 +12,8 @@ const categoriesOrder = [
   'Misc',
 ]
 
-const Guide = [
-  { text: 'Getting Started', link: '/guide/index' },
-  { text: 'Best Practice', link: '/guide/best-practice' },
-  { text: 'Configurations', link: '/guide/config' },
-  { text: 'Components', link: '/guide/components' },
-  { text: 'Contributing', link: '/contributing' },
-  { text: 'Guidelines', link: '/guidelines' },
-]
-
-const Functions = [
-  { text: 'Animation', link: '/functions#animation' },
-  { text: 'Browser', link: '/functions#browser' },
-  { text: 'Component', link: '/functions#component' },
-  { text: 'Formatters', link: '/functions#formatters' },
-  { text: 'Misc', link: '/functions#misc' },
-  { text: 'Sensors', link: '/functions#sensors' },
-  { text: 'State', link: '/functions#state' },
-  { text: 'Utilities', link: '/functions#utilities' },
-  { text: 'Watch', link: '/functions#watch' },
-]
-
-const DefaultSideBar = [
-  { text: 'Guide', children: Guide },
-  { text: 'Core Functions', children: Functions },
-  { text: 'Add-ons', link: '/add-ons' },
-  { text: 'Ecosystem', link: '/ecosystem' },
-  { text: 'Export Size', link: '/export-size' },
-  { text: 'Recently Updated', link: '/recently-updated' },
-]
+const Guide = [{ text: 'Getting Started', link: '/guide/index' }]
+const DefaultSideBar = [{ text: 'Guide', children: Guide }]
 
 const useRequest = [
   { text: '快速上手', link: '/hooks/effect/useRequest/doc/' },
@@ -89,10 +62,10 @@ const config: UserConfig = {
         items: Guide,
       },
 
-      {
-        text: 'Add-ons',
-        link: '/add-ons',
-      },
+      // {
+      //   text: 'Add-ons',
+      //   link: '/add-ons',
+      // },
       {
         text: 'More',
         items: [
@@ -104,22 +77,7 @@ const config: UserConfig = {
     ],
     sidebar: {
       '/guide/': DefaultSideBar,
-      '/contributing': DefaultSideBar,
-      '/add-ons': DefaultSideBar,
-      '/ecosystem': DefaultSideBar,
-      '/guidelines': DefaultSideBar,
-      '/export-size': DefaultSideBar,
-      '/recently-updated': DefaultSideBar,
-
       '/hook': UseRequestSideBar,
-      '/functions': FunctionsSideBar,
-      '/core/': FunctionsSideBar,
-      '/shared/': FunctionsSideBar,
-      '/router/': FunctionsSideBar,
-      '/electron/': FunctionsSideBar,
-      '/rxjs/': FunctionsSideBar,
-      '/integrations/': FunctionsSideBar,
-      '/firebase/': FunctionsSideBar,
     },
     algolia: {
       appId: 'NBQWY48OOR',

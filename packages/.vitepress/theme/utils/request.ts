@@ -6,7 +6,7 @@ const service = axios.create({
 
 service.interceptors.request.use(
   config => {
-    config.headers.common['Authorization'] = localStorage.getItem('AUTH_TOKEN')
+    // config.headers.common['Authorization'] = localStorage.getItem('AUTH_TOKEN')
 
     return config
   },
@@ -16,7 +16,6 @@ service.interceptors.request.use(
 )
 
 service.interceptors.response.use(response => {
-  // console.log('response', response)
   return response.data
 })
 

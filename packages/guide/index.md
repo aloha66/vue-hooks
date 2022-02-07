@@ -10,7 +10,6 @@ VueUse is a collection of utility functions based on [Composition API](https://v
 npm i @vueuse/core
 ```
 
-[Add ons](/add-ons.html) | [Nuxt Module](/guide/index.html#nuxt)
 
 > From v6.0, VueUse requires `vue` >= v3.2 or `@vue/composition-api` >= v1.1
 
@@ -89,4 +88,3 @@ export default {
 }
 ```
 
-Refer to [functions list](/functions) for more details.

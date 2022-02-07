@@ -1,7 +1,7 @@
 ---
 home: true
 actionText: All Functions
-actionLink: /functions
+# actionLink: /functions
 
 altActionText: Get Started
 altActionLink: /guide/

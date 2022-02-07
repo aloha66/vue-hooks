@@ -26,10 +26,6 @@ function getUrl() {
 //     retry2Count.value++
 //   },
 // })
-
-watchEffect(() => {
-  console.log('cancel1', cancel1)
-})
 </script>
 <template>
   <div>
