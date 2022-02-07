@@ -16,29 +16,17 @@ on:
       - dev
       - next
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-          
-      - name: Install yarn
-      - run: yarn
-      
-      - name: docs:build
-      - run: npm run docs:build
-      
-      - name: docs:serve
-      - run: npm run docs:serve
-      
+jobs:     
   deploy:
      runs-on: ubuntu-latest
      steps:
         - uses: actions/checkout@v2
-        - name: Deploy
           with:
            publish_dir: ./packages
+           
+        - name: Install yarn
+        - run: yarn
+      
+        - name: docs:build
+        - run: npm run docs:build
 
