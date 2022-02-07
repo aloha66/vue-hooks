@@ -1,6 +1,6 @@
 {
   "name": "vite-project",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "build": "esno scripts/build.ts",
     "build:rollup": "rollup -c",
@@ -8,7 +8,11 @@
     "dev": "vite",
     "docs": "vitepress dev packages",
     "serve": "vite preview",
-    "test:watch": "vitest --watch"
+    "test:watch": "vitest --watch",
+    "publish:ci": "esno scripts/publish.ts",
+    "release": "esno scripts/release.ts",
+    "release:dry": "esno scripts/release.ts --dry",
+    "update": "esno scripts/update.ts"
   },
   "dependencies": {
     "axios": "^0.24.0",
@@ -24,7 +28,9 @@
     "consola": "^2.15.3",
     "esbuild-register": "^3.3.1",
     "esno": "^0.14.0",
+    "fs-extra": "^10.0.0",
     "jsdom": "^19.0.0",
+    "minimist": "^1.2.5",
     "mitt": "^3.0.0",
     "msw": "^0.36.3",
     "rollup": "^2.63.0",

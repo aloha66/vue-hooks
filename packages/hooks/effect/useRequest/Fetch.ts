@@ -61,7 +61,7 @@ export default class Fetch<TData, TParams extends any[]> {
     if (stopNow) {
       return new Promise(() => {})
     }
-    debugger
+
     this.setState({
       loading: true,
       params,

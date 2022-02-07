@@ -1,6 +1,6 @@
 import type Fetch from './Fetch'
 
-import { Ref } from 'vue-demi'
+import type { Ref } from 'vue-demi'
 import { CachedData } from './utils/cache'
 
 export type Subscribe = () => void

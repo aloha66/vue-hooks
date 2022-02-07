@@ -56,7 +56,7 @@ const useCachePlugin: Plugin<any, any[]> = (
     if (customGetCache) {
       return customGetCache(params!)
     }
-    debugger
+
     return cache.getCache(key)
   }
 
@@ -65,7 +65,6 @@ const useCachePlugin: Plugin<any, any[]> = (
     if (!cacheKey) {
       return
     }
-    debugger
 
     // get data from cache when init
     const cacheData = _getCache(cacheKey)
@@ -101,7 +100,6 @@ const useCachePlugin: Plugin<any, any[]> = (
     // 判断是否需要请求
     // 回填data
     onBefore: params => {
-      debugger
       const cacheData = _getCache(cacheKey, params)
       if (!cacheData || !Object.hasOwnProperty.call(cacheData, 'data')) {
         return {}
@@ -132,7 +130,6 @@ const useCachePlugin: Plugin<any, any[]> = (
      * @returns
      */
     onRequest: (service, args) => {
-      debugger
       let servicePromise = cachePromise.getCachePromise(cacheKey)
 
       // If has servicePromise, and is not trigger by self, then use it
