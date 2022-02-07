@@ -1,6 +1,6 @@
 {
-  "name": "vite-project",
-  "version": "0.1.0",
+  "name": "vue-hooks-ultra",
+  "version": "0.3.1",
   "scripts": {
     "build": "esno scripts/build.ts",
     "build:rollup": "rollup -c",

@@ -37,7 +37,7 @@ export async function updatePackageJSON() {
         import: './dist/index.mjs',
         require: './dist/index.cjs.js',
       },
-      './': './',
+      "./*": "./*",
     }
     await fs.writeJSON(packageJSONPath, packageJSON, { spaces: 2 })
   }
