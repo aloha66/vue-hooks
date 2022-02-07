@@ -20,13 +20,16 @@ jobs:
   deploy:
      runs-on: ubuntu-latest
      steps:
-        - uses: actions/checkout@v2
-          with:
-           publish_dir: ./packages
-           
+        # - uses: actions/checkout@v2
         - name: Install yarn
           run: yarn
       
         - name: docs:build
           run: npm run docs:build
+          
+        - name: GitHub Pages v3
+          uses: peaceiris/actions-github-pages@v3.1.12
+          with:
+           publish_dir: ./packages
+
 
