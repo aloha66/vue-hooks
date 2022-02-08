@@ -1,8 +1,3 @@
-<script setup>
-import Default from '../demo/default.vue'
-import Manual from '../demo/manual.vue'
-</script>
-
 ## 特性
 useRequest 是一个强大的异步数据管理的 Hooks，React 项目中的网络请求场景使用 useRequest 就够了。
 
@@ -28,7 +23,8 @@ useRequest 通过插件式组织代码，核心代码极其简单，并且可以
 
 
 ## 默认用法
-<Default />
+<Demo src="hooks/effect/useRequest/demo/default"/>
+
 ```vue
 <script setup lang="ts">
 import { useRequest } from '@vue-hooks-ultra/effect'
@@ -49,7 +45,7 @@ const { data, loading } = useRequest(
 ## 手动触发
 
 如果设置了 `options.manual = true`，则 useRequest 不会默认执行，需要通过 `run` 来触发执行。
-<Manual/>
+<Demo src="hooks/effect/useRequest/demo/manual"/>
 
 ```js
 const { loading, run } = useRequest(changeUsername, {

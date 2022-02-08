@@ -27,4 +27,4 @@ useEffect(() => {
 ```
 
 你可以通过下面示例来体验效果
-<RefreshDeps/>
+<Demo src="hooks/effect/useRequest/demo/refreshDeps"/>

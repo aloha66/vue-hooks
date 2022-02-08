@@ -1,6 +1,7 @@
 import { join, resolve } from 'path'
 import type { Plugin, UserConfig } from 'vite'
 import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
 
 const config: UserConfig = {
   resolve: {
@@ -33,6 +34,13 @@ const config: UserConfig = {
     // ],
   },
   plugins: [
+    // plugins
+    Components({
+      dirs: resolve(__dirname, '.vitepress/theme/components'),
+      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      dts: './.vitepress/components.d.ts',
+      transformer: 'vue3',
+    }),
     AutoImport({
       /* options */
       imports: ['vue'],
